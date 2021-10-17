@@ -5,23 +5,35 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Consultas extends JFrame{
-    private JButton volverButton;
-    private JPanel consultas;
+  private JPanel Consulta;
+  private JComboBox comboBoxEscuelas;
+  private JTextField textFieldCodigoPlan;
+  private JTextField textFieldVigencia;
+  private JButton generarPDFYEnviarButton;
+  private JTable tableCursosInformacion;
+  private JButton regresarButton;
 
-    public Consultas() {
-        setContentPane(consultas);
-        setTitle("Sistema Gestor de Planes de Estudio");
-        setSize(450,300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+  public Consultas() {
+    setContentPane(Consulta);
+    setTitle("Sistema Gestor de Planes de Estudio");
+    setSize(800,400);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setLocationRelativeTo(null);
 
-        volverButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                MainGui nuevaMainGui = new MainGui();
-                nuevaMainGui.setVisible(true);
-            }
-        });
-    }
+    regresarButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        setVisible(false);
+        MainGui nuevaMainGui = new MainGui();
+        nuevaMainGui.setVisible(true);
+      }
+    });
+
+    generarPDFYEnviarButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        // Aqui iria lo de generara pdf y el correo.
+      }
+    });
+  }
 }
