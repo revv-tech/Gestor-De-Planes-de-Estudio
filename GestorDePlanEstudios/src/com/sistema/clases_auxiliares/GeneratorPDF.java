@@ -13,19 +13,28 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+/**
+ *  Clase encargada de generar archvios en formato PDF
+ * @author Marco Reveiz
+ * @version 1.0
+ */
 public class GeneratorPDF {
 
-    private Document pdf;
-    private String nombreEscuela;
-    private String nombre;
-    private String nombrePlan;
-    private ArrayList<Curso> listaCursos;
-    private File archivo;
-    private Paragraph titulo;
-    private Font fuenteTitulo;
-    private String carpetaFinal;
+    private Document pdf; // Plantilla del Documento
+    private String nombreEscuela; // Nombre de la escuela
+    private String nombre; // Nombre del estudiante
+    private String nombrePlan; // Codigo del Plan
+    private ArrayList<Curso> listaCursos; // Lista de los curso del plan
+    private File archivo; // Objeto archivo que sea generado
+    private Paragraph titulo; // Titulo del PDF
+    private Font fuenteTitulo; // Fuente del titulo
 
-
+    /**
+     * Metodo constructor
+     * @param nombre Nombre del estudiante
+     * @param nombreEscuela Nombre de la escuela
+     * @param listaCursos Lista de los curso del plan
+     */
     public GeneratorPDF(String nombre, String nombreEscuela, ArrayList<Curso> listaCursos){
 
         this.nombre = nombre;
@@ -35,9 +44,11 @@ public class GeneratorPDF {
         this.fuenteTitulo = new Font(Font.FontFamily.TIMES_ROMAN,30,Font.NORMAL);
         this.titulo = new Paragraph("Plan de Estudios",fuenteTitulo);
 
-
     }
 
+    /**
+     * Genera el ped
+     */
     public void generatePDF(){
         //Cambia de color la fuente
         fuenteTitulo.setColor(BaseColor.BLUE.darker().darker());
@@ -114,7 +125,7 @@ public class GeneratorPDF {
             tabla.addCell(id);
             tabla.addCell(creditos);
             tabla.addCell(hrs);
-
+            //For que agrega los cursos a la tabla
             for (Curso curso: this.listaCursos) {
                 //Crea las celdas y las llena con la información de cada curso
                 PdfPCell nombreCurso = new PdfPCell(new Phrase(curso.getNombreCurso(), fuente));

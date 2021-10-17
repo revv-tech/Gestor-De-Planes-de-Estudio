@@ -9,6 +9,12 @@ import javax.mail.internet.MimeMultipart;
 import java.io.File;
 import java.util.Properties;
 
+/**
+ * Claser que implementa la API de correos de Java para enviar correos electronicos adjuntando archvios
+ * @author Marco Reveiz
+ * @version 1.0
+ */
+
 public class JavaMailAPI {
 
     public static void enviarCorreo (String nombreEstudiante, String email) throws Exception{

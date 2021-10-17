@@ -15,6 +15,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+/**
+ * Clase encarga de manejar los archivos .json en los que se almacenara informacion vital para el programa
+ * @author Marco Reveiz
+ * @version 1.0
+ */
 public class JsonManager {
 
     private ArrayList<Escuela> escuelas;
