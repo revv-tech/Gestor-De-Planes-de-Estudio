@@ -36,7 +36,7 @@ public class JavaMailAPI {
         //Agrega los archivos adjuntos
         MimeBodyPart attachment = new MimeBodyPart();
         //Busca el path
-        File file = new File("PlanEstudio" + nombreEstudiante + ".pdf");
+        File file = new File(System.getProperty("user.dir") + "\\src\\com\\sistema\\pdfs\\"+ "PlanEstudio" + nombreEstudiante + ".pdf");
         String path = file.getAbsolutePath();
         attachment.attachFile(path);
         MimeBodyPart attachment2 = new MimeBodyPart();
