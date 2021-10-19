@@ -23,7 +23,7 @@ public class GeneratorPDF {
     private Document pdf; // Plantilla del Documento
     private String nombreEscuela; // Nombre de la escuela
     private String nombre; // Nombre del estudiante
-    private String nombrePlan; // Codigo del Plan
+    private String idPlan; // Codigo del Plan
     private ArrayList<Curso> listaCursos; // Lista de los curso del plan
     private File archivo; // Objeto archivo que sea generado
     private Paragraph titulo; // Titulo del PDF
