@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Curso extends JFrame{
+  // Componentes
   private JPanel Curso;
   private JButton registrarButton;
   private JButton limpiarCamposButton;
@@ -22,6 +23,10 @@ public class Curso extends JFrame{
     setLocationRelativeTo(null);
 
     registrarButton.addActionListener(new ActionListener() {
+      /**
+       * Registra un nuevo curso y vuelve al menu de registros.
+       * @param e
+       */
       @Override
       public void actionPerformed(ActionEvent e) {
         // Falta codigo de registrar.
@@ -32,6 +37,10 @@ public class Curso extends JFrame{
     });
 
     limpiarCamposButton.addActionListener(new ActionListener() {
+      /**
+       * Limpia los datos ingresados en el panel.
+       * @param e
+       */
       @Override
       public void actionPerformed(ActionEvent e) {
         textFieldNombre.setText(null);

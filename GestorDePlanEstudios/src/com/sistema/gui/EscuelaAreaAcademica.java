@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class EscuelaAreaAcademica extends JFrame{
+  // Componentes
   private JPanel EscuelaArea;
   private JLabel jlTitulo;
   private JTextField tfNombre;
@@ -20,6 +21,10 @@ public class EscuelaAreaAcademica extends JFrame{
     setLocationRelativeTo(null);
 
     limparButton.addActionListener(new ActionListener() {
+      /**
+       * Limpia los datos ingresados en el panel.
+       * @param e
+       */
       @Override
       public void actionPerformed(ActionEvent e) {
         tfNombre.setText(null);
@@ -28,6 +33,10 @@ public class EscuelaAreaAcademica extends JFrame{
     });
 
     registrarButton.addActionListener(new ActionListener() {
+      /**
+       * Registra una nueva escuela o area academica.
+       * @param e
+       */
       @Override
       public void actionPerformed(ActionEvent e) {
         setVisible(false);

@@ -4,46 +4,44 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PlanEstudio extends JFrame{
+public class ConsultaPlan extends JFrame{
   // Componentes
-  private JPanel PlanEstudio;
-  private JTextField textFieldCodigoCurso;
-  private JComboBox comboBoxBloque;
-  private JButton registrarCursoAlPlanButton;
-  private JButton regresarButton;
+  private JPanel Consulta;
   private JComboBox comboBoxEscuelas;
   private JTextField textFieldCodigoPlan;
   private JTextField textFieldVigencia;
+  private JButton generarPDFYEnviarButton;
+  private JTable tableCursosInformacion;
+  private JButton regresarButton;
 
-  public PlanEstudio() {
-    setContentPane(PlanEstudio);
+  public ConsultaPlan() {
+    setContentPane(Consulta);
     setTitle("Sistema Gestor de Planes de Estudio");
-    setSize(600,500);
+    setSize(800,400);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
-    setIconImage(new ImageIcon(getClass().getResource("Icon/logo.png")).getImage());
 
     regresarButton.addActionListener(new ActionListener() {
       /**
-       * Vuelve al menu de registros.
+       * Regresa al menu de consultas.
        * @param e
        */
       @Override
       public void actionPerformed(ActionEvent e) {
         setVisible(false);
-        Registro nuevoRegistro = new Registro();
-        nuevoRegistro.setVisible(true);
+        Consultas nuevaConsulta = new Consultas();
+        nuevaConsulta.setVisible(true);
       }
     });
 
-    registrarCursoAlPlanButton.addActionListener(new ActionListener() {
+    generarPDFYEnviarButton.addActionListener(new ActionListener() {
       /**
-       * Registra un nuevo plan de estudios.
+       * Genera pdf y envía el correo.
        * @param e
        */
       @Override
       public void actionPerformed(ActionEvent e) {
-
+        // Aqui iria lo de generara pdf y el correo.
       }
     });
   }
