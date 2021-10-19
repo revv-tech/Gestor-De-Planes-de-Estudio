@@ -86,7 +86,7 @@ public class Escuela {
             throw new CursoDoesntExistException(pCurso.getCodigo());
     }
 
-    public void consultarPlan(String pNombreEscuela) {
-        // No se a que se refiere esta función
+    public void consultarPlan(String codigoPlan) {
+        // Debe buscar un plan que este asociado a la escuela por el codigo dado (Requerimiento 5)
     }
 }

@@ -27,11 +27,11 @@ public class Main {
         PlanDeEstudio planComputadores = new PlanDeEstudio(2,2);
         planDeEstudios.add(planComputacion);
         planDeEstudios.add(planComputadores);
-
-        Curso foc = new Curso(1,"Fundamentos de Computadores", 1, 5, 8);
-        Curso intro = new Curso(1,"Introduccion a Programación", 2, 4, 8);
-        Curso taller = new Curso(1,"Taller de Programación", 3, 4, 6);
-        Curso datos = new Curso(1,"Estrcuturas de Datos", 4, 5, 10);
+/*
+        //Curso foc = new Curso(1,"Fundamentos de Computadores", 1, 5, 8);
+        //Curso intro = new Curso(1,"Introduccion a Programación", 2, 4, 8);
+        //Curso taller = new Curso(1,"Taller de Programación", 3, 4, 6);
+        //Curso datos = new Curso(1,"Estrcuturas de Datos", 4, 5, 10);
         Curso bases = new Curso(1,"Bases de Datos", 5, 4, 4);
         cursos.add(foc);
         cursos.add(intro);
@@ -47,5 +47,7 @@ public class Main {
         //generatorPDF.generatePDF();
         //Envia el correo
         //JavaMailAPI.enviarCorreo("MarcoReveiz","revvace@gmail.com");
+        */
+
     }
 }
