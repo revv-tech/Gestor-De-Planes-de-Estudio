@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Registro extends JFrame {
+  // Componentes.
   private JButton registrarEscuelaOÁreaButton;
   private JPanel WindowRegistrar;
   private JButton registrarPlanesDeEstudioButton;
@@ -20,8 +21,13 @@ public class Registro extends JFrame {
     setSize(450,300);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
+    setIconImage(new ImageIcon(getClass().getResource("Icon/logo.png")).getImage());
 
     volverButton.addActionListener(new ActionListener() {
+      /**
+       * Vuelve al menu principal.
+       * @param e
+       */
       @Override
       public void actionPerformed(ActionEvent e) {
         setVisible(false);
@@ -31,6 +37,10 @@ public class Registro extends JFrame {
     });
 
     registrarCursosButton.addActionListener(new ActionListener() {
+      /**
+       * Abre una ventana para registrar un curso.
+       * @param e
+       */
       @Override
       public void actionPerformed(ActionEvent e) {
         setVisible(false);
@@ -40,6 +50,10 @@ public class Registro extends JFrame {
     });
 
     registrarEscuelaOÁreaButton.addActionListener(new ActionListener() {
+      /**
+       * Abre un ventana para registrar una escuela o area academica.
+       * @param e
+       */
       @Override
       public void actionPerformed(ActionEvent e) {
         setVisible(false);
@@ -49,6 +63,10 @@ public class Registro extends JFrame {
     });
 
     asignarRequisitosYCorrequisitosButton.addActionListener(new ActionListener() {
+      /**
+       * Abre una ventana para registrar un requisito o correquisito de curso.
+       * @param e
+       */
       @Override
       public void actionPerformed(ActionEvent e) {
         setVisible(false);
@@ -58,6 +76,10 @@ public class Registro extends JFrame {
     });
 
     registrarPlanesDeEstudioButton.addActionListener(new ActionListener() {
+      /**
+       * Abre una ventana para registrar un plan de estudios.
+       * @param e
+       */
       @Override
       public void actionPerformed(ActionEvent e) {
         setVisible(false);

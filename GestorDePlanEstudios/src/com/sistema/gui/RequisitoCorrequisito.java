@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RequisitoCorrequisito extends JFrame{
+  // Componentes.
   private JPanel RequisitoCorrequisito;
   private JComboBox comboBoxCodigoCurso;
   private JComboBox comboBoxEscuelas;
@@ -20,8 +21,13 @@ public class RequisitoCorrequisito extends JFrame{
     setSize(600,400);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
+    setIconImage(new ImageIcon(getClass().getResource("Icon/logo.png")).getImage());
 
     cerrarButton.addActionListener(new ActionListener() {
+      /**
+       * Cierra el programa.
+       * @param e
+       */
       @Override
       public void actionPerformed(ActionEvent e) {
         System.exit(0);
@@ -29,6 +35,10 @@ public class RequisitoCorrequisito extends JFrame{
     });
 
     registrarRequisitoButton.addActionListener(new ActionListener() {
+      /**
+       * Registra un requisito.
+       * @param e
+       */
       @Override
       public void actionPerformed(ActionEvent e) {
         setVisible(false);
@@ -38,6 +48,10 @@ public class RequisitoCorrequisito extends JFrame{
     });
 
     registrarCorrequisitoButton.addActionListener(new ActionListener() {
+      /**
+       * Registra un correquisito.
+       * @param e
+       */
       @Override
       public void actionPerformed(ActionEvent e) {
         setVisible(false);

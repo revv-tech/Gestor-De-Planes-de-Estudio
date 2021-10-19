@@ -5,11 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainGui extends JFrame{
-
+  // Componentes.
   private JPanel Window;
   private JButton registrosButton;
   private JButton salirButton;
   private JButton consultasButton;
+  private JButton modificacionesButton;
 
   public MainGui() {
     setContentPane(Window);
@@ -18,8 +19,13 @@ public class MainGui extends JFrame{
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
     setLocationRelativeTo(null);
+    setIconImage(new ImageIcon(getClass().getResource("Icon/logo.png")).getImage());
 
     salirButton.addActionListener(new ActionListener() {
+      /**
+       * Cierra el programa.
+       * @param e
+       */
       @Override
       public void actionPerformed(ActionEvent e) {
                 System.exit(0);
@@ -27,6 +33,10 @@ public class MainGui extends JFrame{
     });
 
     consultasButton.addActionListener(new ActionListener() {
+      /**
+       * Abre la ventana de consultas.
+       * @param e
+       */
       @Override
       public void actionPerformed(ActionEvent e) {
         setVisible(false);
@@ -41,6 +51,19 @@ public class MainGui extends JFrame{
         setVisible(false);
         Registro nuevoRegistro = new Registro();
         nuevoRegistro.setVisible(true);
+      }
+    });
+
+    modificacionesButton.addActionListener(new ActionListener() {
+      /**
+       * Abre la ventana para modificar informacion del sistema.
+       * @param e
+       */
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        setVisible(false);
+        ModificarInformacion nuevoModificacion = new ModificarInformacion();
+        nuevoModificacion.setVisible(true);
       }
     });
   }
