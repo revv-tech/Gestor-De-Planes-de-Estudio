@@ -7,16 +7,16 @@ import java.util.ArrayList;
 
 public class Curso {
     // Atributos
-    private int escuelaPropietaria;
+    private String escuelaPropietaria; //El id de una escuela es un string (CI, CA,...)
     private String nombreCurso;
-    private int codigo;
-    private int creditos;
-    private int horasLectivas;
+    private int codigo; // Un alfanumerico de 2 a +4 numeros ejemplo -> IC-5102 entonces hay que cambiarlo a String :(
+    private int creditos; // va de 0 a 4
+    private int horasLectivas; // va de 1 a 5
     private final ArrayList<Curso> requisitos;
     private final ArrayList<Curso> coRequisitos;
 
     // Constructor
-    public Curso(int escuelaPropietaria, String nombreCurso, int codigo, int creditos, int horasLectivas) {
+    public Curso(String escuelaPropietaria, String nombreCurso, int codigo, int creditos, int horasLectivas) {
         this.escuelaPropietaria = escuelaPropietaria;
         this.nombreCurso = nombreCurso;
         this.codigo = codigo;
@@ -27,11 +27,11 @@ public class Curso {
      }
 
      // Metodos Accesores
-    public int getEscuelaPropietaria() {
+    public String getEscuelaPropietaria() {
         return escuelaPropietaria;
     }
 
-    public void setEscuelaPropietaria(int escuelaPropietaria) {
+    public void setEscuelaPropietaria(String escuelaPropietaria) {
         this.escuelaPropietaria = escuelaPropietaria;
     }
 

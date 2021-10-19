@@ -8,8 +8,8 @@ import java.util.Date;
 
 public class PlanDeEstudio {
     // Atributos
-    private int escuelaPropietaria;
-    private int codigoPlanEstudios;
+    private int escuelaPropietaria; // hay que cambiar a String porque el codigo de la escuela puede ser CI,CA....
+    private int codigoPlanEstudios; // numero de 4 digitos
     private Date vigenciaPlan;
     private final ArrayList<Curso> cursos;
 

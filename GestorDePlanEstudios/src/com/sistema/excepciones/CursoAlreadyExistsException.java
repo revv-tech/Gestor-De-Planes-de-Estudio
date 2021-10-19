@@ -1,7 +1,7 @@
 package com.sistema.excepciones;
 
 public class CursoAlreadyExistsException extends Exception{
-    private final int codigoCurso;
+    private final int codigoCurso; // Cambiar a string
 
     public CursoAlreadyExistsException(int pCodigoCurso) {
         this.codigoCurso = pCodigoCurso;
