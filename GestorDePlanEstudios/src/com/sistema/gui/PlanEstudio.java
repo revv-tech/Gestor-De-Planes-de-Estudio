@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PlanEstudio extends JFrame{
-  // Componentes
+  // Componentes.
   private JPanel PlanEstudio;
   private JTextField textFieldCodigoCurso;
   private JComboBox comboBoxBloque;

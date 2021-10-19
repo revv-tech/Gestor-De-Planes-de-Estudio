@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Curso extends JFrame{
-  // Componentes
+  // Componentes.
   private JPanel Curso;
   private JButton registrarButton;
   private JButton limpiarCamposButton;

@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ConsultarCurso extends JFrame{
-  // Componentes
+  // Componentes.
   private JPanel ConsultaCurso;
   private JButton consultarButton;
   private JButton limpiarCamposButton;

@@ -5,11 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ConsultaRequisitos extends JFrame{
+  // Componentes.
   private JPanel ConsultaRequisitos;
   private JTextField textFieldNombre;
   private JTextField textFieldCodigo;
   private JButton consultarButton;
-    private JList listRequisitos;
+  private JList listRequisitos;
   private JButton volverButton;
 
   public ConsultaRequisitos() {

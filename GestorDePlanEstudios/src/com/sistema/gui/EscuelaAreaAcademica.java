@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class EscuelaAreaAcademica extends JFrame{
-  // Componentes
+  // Componentes.
   private JPanel EscuelaArea;
   private JLabel jlTitulo;
   private JTextField tfNombre;

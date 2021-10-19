@@ -27,6 +27,7 @@ public class ConsultaCorrquisitos extends JFrame{
        */
        @Override
        public void actionPerformed(ActionEvent e) {
+
        }
     });
 

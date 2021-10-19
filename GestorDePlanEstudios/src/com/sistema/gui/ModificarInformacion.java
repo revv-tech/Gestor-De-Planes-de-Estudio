@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ModificarInformacion extends JFrame{
-  // Componentes
+  // Componentes.
   private JPanel ModificaInformacion;
   private JButton eliminarRequisitoButton;
   private JButton eliminarCorrquisitoButton;

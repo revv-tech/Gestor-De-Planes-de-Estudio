@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RequisitoCorrequisito extends JFrame{
-  // Componentes
+  // Componentes.
   private JPanel RequisitoCorrequisito;
   private JComboBox comboBoxCodigoCurso;
   private JComboBox comboBoxEscuelas;

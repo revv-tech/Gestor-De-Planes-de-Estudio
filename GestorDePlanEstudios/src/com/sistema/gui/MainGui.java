@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainGui extends JFrame{
-  // Componentes
+  // Componentes.
   private JPanel Window;
   private JButton registrosButton;
   private JButton salirButton;

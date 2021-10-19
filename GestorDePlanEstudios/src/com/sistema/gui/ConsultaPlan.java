@@ -43,6 +43,7 @@ public class ConsultaPlan extends JFrame{
       public void actionPerformed(ActionEvent e) {
         // Aqui iria lo de generara pdf y el correo.
       }
+
     });
   }
 }

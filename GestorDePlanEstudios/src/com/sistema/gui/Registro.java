@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Registro extends JFrame {
-  // Componentes
+  // Componentes.
   private JButton registrarEscuelaOÁreaButton;
   private JPanel WindowRegistrar;
   private JButton registrarPlanesDeEstudioButton;
