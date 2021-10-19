@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author Francisco Javier Ovares Rojas
+ * @version 1.0
+ */
 public class RequisitoCorrequisito extends JFrame{
   // Componentes.
   private JPanel RequisitoCorrequisito;
@@ -15,6 +19,7 @@ public class RequisitoCorrequisito extends JFrame{
   private JButton registrarRequisitoButton;
   private JButton cerrarButton;
 
+  /** Constructor */
   public RequisitoCorrequisito() {
     setContentPane(RequisitoCorrequisito);
     setTitle("Sistema Gestor de Planes de Estudio");

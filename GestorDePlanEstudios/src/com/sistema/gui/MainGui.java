@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author Francisco Javier Ovares Rojas
+ * @version 1.0
+ */
 public class MainGui extends JFrame{
   // Componentes.
   private JPanel Window;
@@ -12,6 +16,7 @@ public class MainGui extends JFrame{
   private JButton consultasButton;
   private JButton modificacionesButton;
 
+  /** Constructor */
   public MainGui() {
     setContentPane(Window);
     setTitle("Sistema Gestor de Planes de Estudio");

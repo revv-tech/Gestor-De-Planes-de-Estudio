@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author Francisco Javier Ovares Rojas
+ * @version 1.0
+ */
 public class ConsultaRequisitos extends JFrame{
   // Componentes.
   private JPanel ConsultaRequisitos;
@@ -13,6 +17,7 @@ public class ConsultaRequisitos extends JFrame{
   private JList listRequisitos;
   private JButton volverButton;
 
+  /** Constructor */
   public ConsultaRequisitos() {
     setContentPane(ConsultaRequisitos);
     setTitle("Sistema Gestor de Planes de Estudio");

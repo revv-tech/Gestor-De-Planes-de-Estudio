@@ -6,6 +6,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author Francisco Javier Ovares Rojas
+ * @version 1.0
+ */
 public class Registro extends JFrame {
   // Componentes.
   private JButton registrarEscuelaOÁreaButton;
@@ -15,6 +19,7 @@ public class Registro extends JFrame {
   private JButton asignarRequisitosYCorrequisitosButton;
   private JButton volverButton;
 
+  /** Constructor */
   public Registro() {
     setContentPane(WindowRegistrar);
     setTitle("Sistema Gestor de Planes de Estudio");
