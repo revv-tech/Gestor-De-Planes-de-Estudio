@@ -9,6 +9,12 @@ import javax.mail.internet.MimeMultipart;
 import java.io.File;
 import java.util.Properties;
 
+/**
+ * Claser que implementa la API de correos de Java para enviar correos electronicos adjuntando archvios
+ * @author Marco Reveiz
+ * @version 1.0
+ */
+
 public class JavaMailAPI {
 
     public static void enviarCorreo (String nombreEstudiante, String email) throws Exception{
@@ -36,7 +42,7 @@ public class JavaMailAPI {
         //Agrega los archivos adjuntos
         MimeBodyPart attachment = new MimeBodyPart();
         //Busca el path
-        File file = new File("PlanEstudio" + nombreEstudiante + ".pdf");
+        File file = new File(System.getProperty("user.dir") + "\\src\\com\\sistema\\pdfs\\"+ "PlanEstudio" + nombreEstudiante + ".pdf");
         String path = file.getAbsolutePath();
         attachment.attachFile(path);
         MimeBodyPart attachment2 = new MimeBodyPart();

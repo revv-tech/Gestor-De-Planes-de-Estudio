@@ -5,23 +5,37 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.Font;
+import com.sistema.logicadenegocios.Curso;
+
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
+/**
+ *  Clase encargada de generar archvios en formato PDF
+ * @author Marco Reveiz
+ * @version 1.0
+ */
 public class GeneratorPDF {
 
-    private Document pdf;
-    private String nombreEscuela;
-    private String nombre;
-    private ArrayList<String> listaCursos;
-    private FileOutputStream archivo;
-    private Paragraph titulo;
-    private Font fuenteTitulo;
-    private String carpetaFinal;
+    private Document pdf; // Plantilla del Documento
+    private String nombreEscuela; // Nombre de la escuela
+    private String nombre; // Nombre del estudiante
+    private String nombrePlan; // Codigo del Plan
+    private ArrayList<Curso> listaCursos; // Lista de los curso del plan
+    private File archivo; // Objeto archivo que sea generado
+    private Paragraph titulo; // Titulo del PDF
+    private Font fuenteTitulo; // Fuente del titulo
 
-
-    public GeneratorPDF(String nombre, String nombreEscuela, ArrayList<String> listaCursos){
+    /**
+     * Metodo constructor
+     * @param nombre Nombre del estudiante
+     * @param nombreEscuela Nombre de la escuela
+     * @param listaCursos Lista de los curso del plan
+     */
+    public GeneratorPDF(String nombre, String nombreEscuela, ArrayList<Curso> listaCursos){
 
         this.nombre = nombre;
         this.nombreEscuela = nombreEscuela;
@@ -32,6 +46,9 @@ public class GeneratorPDF {
 
     }
 
+    /**
+     * Genera el ped
+     */
     public void generatePDF(){
         //Cambia de color la fuente
         fuenteTitulo.setColor(BaseColor.BLUE.darker().darker());
@@ -42,10 +59,10 @@ public class GeneratorPDF {
         try{
             String pdfNombre = "PlanEstudio"+this.nombre+".pdf";
             pdfNombre = pdfNombre.replaceAll("\\s", "");
-            System.out.println(pdfNombre);
-            this.archivo = new FileOutputStream(pdfNombre);
+            this.archivo = new File(System.getProperty("user.dir") + "\\src\\com\\sistema\\pdfs\\"+ pdfNombre);
+            OutputStream out = new FileOutputStream(this.archivo);
             //Genera el escritor del Documento PDF
-            PdfWriter.getInstance(pdf,archivo);
+            PdfWriter.getInstance(pdf,out);
             //Abre el documento para llenarlo
             pdf.open();
             titulo.setAlignment(1);
@@ -58,7 +75,8 @@ public class GeneratorPDF {
             Image logo = null;
             //Busca la imagen en el path
             try {
-                logo = Image.getInstance("C:\\Users\\Marco\\Desktop\\DocumentosTEC\\Github\\Gestor-De-Planes-de-Estudio\\GestorDePlanEstudios\\src\\com\\sistema\\Images\\Logo-TEC-Color.png");
+                String path = System.getProperty("user.dir") +"\\src\\com\\sistema\\Images\\Logo-TEC-Color.png";
+                logo = Image.getInstance(path);
                 logo.scaleAbsolute(150,150);
                 logo.setAbsolutePosition(415,700);
                 pdf.add(logo);
@@ -107,32 +125,22 @@ public class GeneratorPDF {
             tabla.addCell(id);
             tabla.addCell(creditos);
             tabla.addCell(hrs);
-            /*
-            for (Curso curso: this.listaCursos){
-                tabla.addCell(curso.getNombre());
-                tabla.addCell(curso.getCodigo());
-                tabla.addCell(curso.getCreditos());
-                tabla.addCell(curso.getHoras());
-            }
-            //Agrega tabla
-            pdf.add(tabla)
-
-            */
-            for (String curso: this.listaCursos) {
+            //For que agrega los cursos a la tabla
+            for (Curso curso: this.listaCursos) {
                 //Crea las celdas y las llena con la información de cada curso
-                PdfPCell nombreCurso = new PdfPCell(new Phrase(curso, fuente));
+                PdfPCell nombreCurso = new PdfPCell(new Phrase(curso.getNombreCurso(), fuente));
                 nombreCurso.setBorderColor(BaseColor.BLUE.darker());
                 nombreCurso.setFixedHeight(25);
                 nombreCurso.setHorizontalAlignment(1);
-                PdfPCell codigo = new PdfPCell(new Phrase("", fuente));
+                PdfPCell codigo = new PdfPCell(new Phrase(String.valueOf(curso.getCodigo()), fuente));
                 codigo.setBorderColor(BaseColor.BLUE.darker());
                 codigo.setFixedHeight(25);
                 codigo.setHorizontalAlignment(1);
-                PdfPCell cantCreditos = new PdfPCell(new Phrase("", fuente));
+                PdfPCell cantCreditos = new PdfPCell(new Phrase(String.valueOf(curso.getCreditos()), fuente));
                 cantCreditos.setBorderColor(BaseColor.BLUE.darker());
                 cantCreditos.setFixedHeight(25);
                 cantCreditos.setHorizontalAlignment(1);
-                PdfPCell horasLectivas = new PdfPCell(new Phrase("", fuente));
+                PdfPCell horasLectivas = new PdfPCell(new Phrase(String.valueOf(curso.getHorasLectivas()), fuente));
                 horasLectivas.setBorderColor(BaseColor.BLUE.darker());
                 horasLectivas.setFixedHeight(25);
                 horasLectivas.setHorizontalAlignment(1);
@@ -145,6 +153,7 @@ public class GeneratorPDF {
             pdf.add(tabla);
             //Cierra el documento con todos los elementos agregados
             pdf.close();
+
 
         } catch (Exception e) {
             e.printStackTrace();
