@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author Francisco Javier Ovares Rojas
+ * @version 1.0
+ */
 public class ConsultaPlan extends JFrame{
   // Componentes
   private JPanel Consulta;
@@ -14,6 +18,7 @@ public class ConsultaPlan extends JFrame{
   private JTable tableCursosInformacion;
   private JButton regresarButton;
 
+  /** Constructor */
   public ConsultaPlan() {
     setContentPane(Consulta);
     setTitle("Sistema Gestor de Planes de Estudio");

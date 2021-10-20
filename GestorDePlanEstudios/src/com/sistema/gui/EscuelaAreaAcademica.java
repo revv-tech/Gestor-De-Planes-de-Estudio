@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author Francisco Javier Ovares Rojas
+ * @version 1.0
+ */
 public class EscuelaAreaAcademica extends JFrame{
   // Componentes.
   private JPanel EscuelaArea;
@@ -13,6 +17,7 @@ public class EscuelaAreaAcademica extends JFrame{
   private JButton registrarButton;
   private JButton limparButton;
 
+  /** Constructor */
   public EscuelaAreaAcademica() {
     setContentPane(EscuelaArea);
     setTitle("Sistema Gestor de Planes de Estudio");

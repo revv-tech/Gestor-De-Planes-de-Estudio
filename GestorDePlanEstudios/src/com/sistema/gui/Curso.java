@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author Francisco Javier Ovares Rojas
+ * @version 1.0
+ */
 public class Curso extends JFrame{
   // Componentes.
   private JPanel Curso;
@@ -15,6 +19,7 @@ public class Curso extends JFrame{
   private JComboBox comboBoxCreditos;
   private JComboBox comboBoxHorasLectivas;
 
+  /** Constructor */
   public Curso() {
     setContentPane(Curso);
     setTitle("Sistema Gestor de Planes de Estudio");

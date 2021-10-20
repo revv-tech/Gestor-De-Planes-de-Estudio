@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * @author Francisco Javier Ovares Rojas
+ * @version 1.0
+ */
 public class PlanEstudio extends JFrame{
   // Componentes.
   private JPanel PlanEstudio;
@@ -15,6 +19,7 @@ public class PlanEstudio extends JFrame{
   private JTextField textFieldCodigoPlan;
   private JTextField textFieldVigencia;
 
+  /** Constructor */
   public PlanEstudio() {
     setContentPane(PlanEstudio);
     setTitle("Sistema Gestor de Planes de Estudio");
