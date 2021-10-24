@@ -50,10 +50,7 @@ public class Escuela {
     // Override Super-class
     @Override
     public String toString() {
-        return "Escuela{" +
-                "nombre='" + nombre + '\'' +
-                ", codigo='" + codigo + '\'' +
-                '}';
+        return codigo;
     }
 
     // Métodos

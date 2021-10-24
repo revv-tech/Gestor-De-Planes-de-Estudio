@@ -49,7 +49,7 @@ public class Registro extends JFrame {
       @Override
       public void actionPerformed(ActionEvent e) {
         setVisible(false);
-        Curso nuevoCurso = new Curso();
+        CursoGUI nuevoCurso = new CursoGUI();
         nuevoCurso.setVisible(true);
       }
     });

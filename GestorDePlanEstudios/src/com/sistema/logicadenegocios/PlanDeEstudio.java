@@ -63,11 +63,7 @@ public class PlanDeEstudio {
     // Override Super-class
     @Override
     public String toString() {
-        return "PlanDeEstudio{" +
-                "escuelaPropietaria=" + escuelaPropietaria +
-                ", codigoPlanEstudios=" + codigoPlanEstudios +
-                ", vigenciaPlan=" + vigenciaPlan +
-                '}';
+        return String.valueOf(codigoPlanEstudios);
     }
 
     // Metodos

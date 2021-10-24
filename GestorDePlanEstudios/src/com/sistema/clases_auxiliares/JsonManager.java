@@ -28,14 +28,11 @@ public class JsonManager {
 
     /**
      * Metodo constructor
-     * @param escuelas lista con los objetos Escuela
-     * @param planes lista con los objetos PlanDeEstudio
-     * @param cursos lista con los objetos Curso
      */
-    public JsonManager(ArrayList<Escuela> escuelas, ArrayList<PlanDeEstudio> planes, ArrayList<Curso> cursos) {
-        this.escuelas = escuelas;
-        this.planes = planes;
-        this.cursos = cursos;
+    public JsonManager() {
+        this.escuelas = new ArrayList<Escuela>();
+        this.planes = new ArrayList<PlanDeEstudio>();
+        this.cursos = new ArrayList<Curso>();
     }
 
     /**
@@ -78,16 +75,13 @@ public class JsonManager {
 
         // Objecto Gson
         Gson gson = new Gson();
-
         //Path
         String path = System.getProperty("user.dir") + "\\src\\com\\sistema\\jsons\\";
-
         //Cursos
         String listaCursos = Files.readString(Paths.get(path+"cursos.json"));
         //System.out.println(listaCursos);
         Type cursoALType = new TypeToken<ArrayList<Curso>>(){}.getType();
         ArrayList<Curso> cursoArrayList = gson.fromJson(listaCursos,cursoALType);
-
         //Escuelas
         String listaEscuelas = Files.readString(Paths.get(path+"escuelas.json"));
         //System.out.println(listaEscuelas);
@@ -107,7 +101,18 @@ public class JsonManager {
 
     }
 
-
+    public ArrayList<Escuela> getJsonEscuelas() throws IOException {
+        // Objecto Gson
+        Gson gson = new Gson();
+        //Path
+        String path = System.getProperty("user.dir") + "\\src\\com\\sistema\\jsons\\";
+        //Escuelas
+        String listaEscuelas = Files.readString(Paths.get(path+"escuelas.json"));
+        //System.out.println(listaEscuelas);
+        Type escuelaALType = new TypeToken<ArrayList<Escuela>>(){}.getType();
+        ArrayList<Escuela> escuelaArrayList = gson.fromJson(listaEscuelas,escuelaALType);
+        return escuelaArrayList;
+    }
     public void setEscuelas(ArrayList<Escuela> escuelas) {
         this.escuelas = escuelas;
     }
@@ -118,5 +123,17 @@ public class JsonManager {
 
     public void setCursos(ArrayList<Curso> cursos) {
         this.cursos = cursos;
+    }
+
+    public ArrayList<Escuela> getEscuelas() {
+        return escuelas;
+    }
+
+    public ArrayList<PlanDeEstudio> getPlanes() {
+        return planes;
+    }
+
+    public ArrayList<Curso> getCursos() {
+        return cursos;
     }
 }
