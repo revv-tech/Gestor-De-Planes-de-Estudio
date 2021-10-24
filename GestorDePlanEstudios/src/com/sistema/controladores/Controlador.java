@@ -12,6 +12,7 @@ public class Controlador {
     private final ArrayList<Escuela> escuelas;
     private final ArrayList<PlanDeEstudio> planesDeEstudios;
 
+
     public Controlador() {
         this.escuelas = new ArrayList<>();
         this.planesDeEstudios = new ArrayList<>();

@@ -1,5 +1,9 @@
 package com.sistema.gui;
 
+import com.sistema.clases_auxiliares.GeneratorPDF;
+import com.sistema.clases_auxiliares.JavaMailAPI;
+import com.sistema.logicadenegocios.Escuela;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +21,8 @@ public class ConsultaPlan extends JFrame{
   private JButton generarPDFYEnviarButton;
   private JTable tableCursosInformacion;
   private JButton regresarButton;
+  private JTextField textFieldNombreE;
+  private JTextField textFieldCorreo;
 
   /** Constructor */
   public ConsultaPlan() {
@@ -41,12 +47,23 @@ public class ConsultaPlan extends JFrame{
 
     generarPDFYEnviarButton.addActionListener(new ActionListener() {
       /**
+       * @autor Marco Reveiz
        * Genera pdf y envía el correo.
        * @param e
        */
       @Override
       public void actionPerformed(ActionEvent e) {
-        // Aqui iria lo de generara pdf y el correo.
+        // Escuela
+        Escuela escuela = (Escuela) comboBoxEscuelas.getSelectedItem();
+        //Crea generador de PDF
+        GeneratorPDF generatorPDF = new GeneratorPDF(textFieldNombreE.getText(),comboBoxEscuelas.getName(), escuela.getCursos(), textFieldCodigoPlan.getText());
+        generatorPDF.generatePDF();
+        //Envia correo
+        try {
+          JavaMailAPI.enviarCorreo(textFieldNombreE.getText(),textFieldCorreo.getText());
+        } catch (Exception ex) {
+          ex.printStackTrace();
+        }
       }
 
     });
