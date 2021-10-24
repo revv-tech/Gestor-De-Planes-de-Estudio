@@ -21,6 +21,15 @@ public class Curso {
     private int horasLectivas; // va de 1 a 5
     private int bloque; // bloque en el que se encuentra el curso
     private final ArrayList<Curso> requisitos;
+
+    public ArrayList<Curso> getRequisitos() {
+        return requisitos;
+    }
+
+    public ArrayList<Curso> getCoRequisitos() {
+        return coRequisitos;
+    }
+
     private final ArrayList<Curso> coRequisitos;
 
     // Constructor
@@ -87,13 +96,7 @@ public class Curso {
     // Override Super-class
     @Override
     public String toString() {
-        return "Curso{" +
-                "escuelaPropietaria='" + escuelaPropietaria + '\'' +
-                ", nombreCurso='" + nombreCurso + '\'' +
-                ", codigo=" + codigo +
-                ", creditos=" + creditos +
-                ", horasLectivas=" + horasLectivas +
-                '}';
+        return nombreCurso;
     }
 
     // Metodos
@@ -149,6 +152,8 @@ public class Curso {
         }
         return infoReqs.toString();
     }
+
+
 
     public String mostrarCorequisitos() {
         StringBuilder infoCoreqs = new StringBuilder("Corequisitos de " + this.nombreCurso + ":\n");

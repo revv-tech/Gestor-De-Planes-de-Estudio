@@ -23,11 +23,13 @@ public class GeneratorPDF {
     private Document pdf; // Plantilla del Documento
     private String nombreEscuela; // Nombre de la escuela
     private String nombre; // Nombre del estudiante
-    private String nombrePlan; // Codigo del Plan
+    private String idPlan; // Codigo del Plan
     private ArrayList<Curso> listaCursos; // Lista de los curso del plan
     private File archivo; // Objeto archivo que sea generado
     private Paragraph titulo; // Titulo del PDF
     private Font fuenteTitulo; // Fuente del titulo
+    private String plan; // Nombre del plan
+    private String bloque; // Bloque de plan
 
     /**
      * Metodo constructor
@@ -35,7 +37,7 @@ public class GeneratorPDF {
      * @param nombreEscuela Nombre de la escuela
      * @param listaCursos Lista de los curso del plan
      */
-    public GeneratorPDF(String nombre, String nombreEscuela, ArrayList<Curso> listaCursos){
+    public GeneratorPDF(String nombre, String nombreEscuela, ArrayList<Curso> listaCursos, String plan, String bloque){
 
         this.nombre = nombre;
         this.nombreEscuela = nombreEscuela;
@@ -43,6 +45,8 @@ public class GeneratorPDF {
         this.pdf = new Document();
         this.fuenteTitulo = new Font(Font.FontFamily.TIMES_ROMAN,30,Font.NORMAL);
         this.titulo = new Paragraph("Plan de Estudios",fuenteTitulo);
+        this.plan = plan;
+        this.bloque = bloque;
 
     }
 
@@ -95,6 +99,12 @@ public class GeneratorPDF {
             pdf.add(new Paragraph("Nombre de la escuela: " + this.nombreEscuela, subFuente));
             //Agrega nueva línea
             pdf.add(new Paragraph(Chunk.NEWLINE));
+            //Agrega codigo de plan
+            pdf.add(new Paragraph("Código del plan de estudio: " + this.plan, subFuente));
+            //Agrega nueva línea
+            pdf.add(new Paragraph(Chunk.NEWLINE));
+            //Agrega bloque
+            pdf.add(new Paragraph("Bloque: " + this.bloque, subFuente));
             //Agrega nueva línea
             pdf.add(new Paragraph(Chunk.NEWLINE));
             //Crea tabla de cursos
@@ -151,6 +161,16 @@ public class GeneratorPDF {
                 tabla.addCell(horasLectivas);
             }
             pdf.add(tabla);
+            //Crea fuente para texto normal
+            Font fuentePeque =  new Font(Font.FontFamily.TIMES_ROMAN,5,Font.NORMAL);
+
+            //Agrega nueva línea
+            pdf.add(new Paragraph(Chunk.NEWLINE));
+            //Final
+            Paragraph finalTitulo = new Paragraph("Plan de Estudios del Instituto Técnológico de Costa Rica Bloque " + this.bloque,fuentePeque);
+            finalTitulo.setAlignment(1);
+            //Agrega bloque
+            pdf.add(finalTitulo);
             //Cierra el documento con todos los elementos agregados
             pdf.close();
 

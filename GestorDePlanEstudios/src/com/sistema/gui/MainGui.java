@@ -1,6 +1,8 @@
 package com.sistema.gui;
 
 import com.sistema.controladores.Controlador;
+import com.sistema.excepciones.CursoAlreadyExistsException;
+
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -17,6 +19,9 @@ public class MainGui extends JFrame{
   private JButton salirButton;
   private JButton consultasButton;
   private JButton modificacionesButton;
+  private JButton cargarJSONButton;
+  private JButton bajarJSONButton;
+
 
   /** Constructor */
   public MainGui() {
@@ -28,6 +33,28 @@ public class MainGui extends JFrame{
     setLocationRelativeTo(null);
     setIconImage(new ImageIcon(getClass().getResource("Icon/logo.png")).getImage());
 
+
+    // Boton para cargar Json
+    cargarJSONButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Controlador.setLists();
+        JOptionPane.showMessageDialog(null,"Proceso terminado!");
+      }
+    });
+    // Boton para bajar Json
+    bajarJSONButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Controlador.saveLists();
+        JOptionPane.showMessageDialog(null,"Proceso terminado!");
+      }
+    });
+    // Botones NO LISTOS
+    if (Controlador.ESCUELAS == null & Controlador.PLANES_DE_ESTUDIOS == null & Controlador.CURSOS == null){
+      consultasButton.setEnabled(false);
+      modificacionesButton.setEnabled(false);
+    }
     salirButton.addActionListener(new ActionListener() {
       /**
        * Cierra el programa.
@@ -47,8 +74,10 @@ public class MainGui extends JFrame{
       @Override
       public void actionPerformed(ActionEvent e) {
         setVisible(false);
+
         Consultas nuevaConsulta = new Consultas();
         nuevaConsulta.setVisible(true);
+
       }
     });
 

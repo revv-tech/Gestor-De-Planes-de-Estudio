@@ -1,5 +1,9 @@
 package com.sistema.gui;
 
+import com.sistema.controladores.Controlador;
+import com.sistema.excepciones.EscuelaAlreadyExistsException;
+import com.sistema.logicadenegocios.Escuela;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,6 +49,14 @@ public class EscuelaAreaAcademica extends JFrame{
       @Override
       public void actionPerformed(ActionEvent e) {
         setVisible(false);
+        String nombre = tfNombre.getText();
+        String codigo = tfCodigo.getText();
+        Escuela escuela = new Escuela(nombre,codigo);
+        try {
+          Controlador.agregarEscuela(escuela);
+        } catch (EscuelaAlreadyExistsException ex) {
+          ex.printStackTrace();
+        }
         Registro nuevoRegistro = new Registro();
         nuevoRegistro.setVisible(true);
       }
