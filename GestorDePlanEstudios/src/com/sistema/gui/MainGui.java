@@ -1,5 +1,7 @@
 package com.sistema.gui;
 
+import com.sistema.controladores.Controlador;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +17,7 @@ public class MainGui extends JFrame{
   private JButton salirButton;
   private JButton consultasButton;
   private JButton modificacionesButton;
+
 
   /** Constructor */
   public MainGui() {

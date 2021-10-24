@@ -31,6 +31,16 @@ public class ConsultaPlan extends JFrame{
     setSize(800,400);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
+    //comboBoxEscuelas.setModel(new DefaultComboBoxModel(<Escuela>()));
+
+
+
+    comboBoxEscuelas.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+
+      }
+    });
 
     regresarButton.addActionListener(new ActionListener() {
       /**
@@ -55,6 +65,8 @@ public class ConsultaPlan extends JFrame{
       public void actionPerformed(ActionEvent e) {
         // Escuela
         Escuela escuela = (Escuela) comboBoxEscuelas.getSelectedItem();
+        // Codigo de Plan
+        String planID = textFieldCodigoPlan.getText();
         //Crea generador de PDF
         GeneratorPDF generatorPDF = new GeneratorPDF(textFieldNombreE.getText(),comboBoxEscuelas.getName(), escuela.getCursos(), textFieldCodigoPlan.getText());
         generatorPDF.generatePDF();
