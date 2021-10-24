@@ -5,6 +5,12 @@ import com.sistema.excepciones.CursoDoesntExistException;
 
 import java.util.ArrayList;
 
+/**
+ * Muestra la informacion de un curso que se encuentra y todos los cursos relacionados a el
+ *
+ * @autor Sebastian Lopez H
+ * @version 1.0
+ */
 public class Curso {
     // Atributos
     private String escuelaPropietaria; //El id de una escuela es un string (CI, CA,...)
@@ -12,6 +18,7 @@ public class Curso {
     private int codigo; // Un alfanumerico de 2 a +4 numeros ejemplo -> IC-5102 entonces hay que cambiarlo a String :(
     private int creditos; // va de 0 a 4
     private int horasLectivas; // va de 1 a 5
+    private int bloque; // bloque en el que se encuentra el curso
     private final ArrayList<Curso> requisitos;
     private final ArrayList<Curso> coRequisitos;
 
@@ -22,6 +29,7 @@ public class Curso {
         this.codigo = codigo;
         this.creditos = creditos;
         this.horasLectivas = horasLectivas;
+        this.bloque = 0;
         this.requisitos = new ArrayList<>();
         this.coRequisitos = new ArrayList<>();
      }
@@ -65,6 +73,14 @@ public class Curso {
 
     public void setHorasLectivas(int horasLectivas) {
         this.horasLectivas = horasLectivas;
+    }
+
+    public int getBloque() {
+        return bloque;
+    }
+
+    public void setBloque(int bloque) {
+        this.bloque = bloque;
     }
 
     // Override Super-class
@@ -123,5 +139,21 @@ public class Curso {
                 return corequisito;
         }
         throw new CursoDoesntExistException(idCurso);
+    }
+
+    public String mostrarRequisitos() {
+        StringBuilder infoReqs = new StringBuilder("Requisitos de " + this.nombreCurso + ":\n");
+        for (Curso requisito : this.requisitos) {
+            infoReqs.append("\t").append(requisito.toString()).append("\n");
+        }
+        return infoReqs.toString();
+    }
+
+    public String mostrarCorequisitos() {
+        StringBuilder infoCoreqs = new StringBuilder("Corequisitos de " + this.nombreCurso + ":\n");
+        for (Curso corequisito : this.coRequisitos) {
+            infoCoreqs.append("\t").append(corequisito.toString()).append("\n");
+        }
+        return infoCoreqs.toString();
     }
 }
