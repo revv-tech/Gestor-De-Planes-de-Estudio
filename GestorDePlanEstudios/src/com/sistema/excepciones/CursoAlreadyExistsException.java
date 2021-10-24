@@ -1,13 +1,13 @@
 package com.sistema.excepciones;
 
 public class CursoAlreadyExistsException extends Exception{
-    private final int codigoCurso; // Cambiar a string
+    private final String codigoCurso; // Cambiar a string
 
-    public CursoAlreadyExistsException(int pCodigoCurso) {
+    public CursoAlreadyExistsException(String pCodigoCurso) {
         this.codigoCurso = pCodigoCurso;
     }
 
-    public int getCodigoCurso() {
+    public String getCodigoCurso() {
         return codigoCurso;
     }
 

@@ -4,6 +4,7 @@ import com.sistema.excepciones.CursoAlreadyExistsException;
 import com.sistema.excepciones.CursoDoesntExistException;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Muestra la informacion de un curso que se encuentra y todos los cursos relacionados a el
@@ -15,7 +16,7 @@ public class Curso {
     // Atributos
     private String escuelaPropietaria; //El id de una escuela es un string (CI, CA,...)
     private String nombreCurso;
-    private int codigo; // Un alfanumerico de 2 a +4 numeros ejemplo -> IC-5102 entonces hay que cambiarlo a String :(
+    private String codigo; // Un alfanumerico de 2 a +4 numeros ejemplo -> IC-5102 entonces hay que cambiarlo a String :(
     private int creditos; // va de 0 a 4
     private int horasLectivas; // va de 1 a 5
     private int bloque; // bloque en el que se encuentra el curso
@@ -23,7 +24,7 @@ public class Curso {
     private final ArrayList<Curso> coRequisitos;
 
     // Constructor
-    public Curso(String escuelaPropietaria, String nombreCurso, int codigo, int creditos, int horasLectivas) {
+    public Curso(String escuelaPropietaria, String nombreCurso, String codigo, int creditos, int horasLectivas) {
         this.escuelaPropietaria = escuelaPropietaria;
         this.nombreCurso = nombreCurso;
         this.codigo = codigo;
@@ -51,11 +52,11 @@ public class Curso {
         this.nombreCurso = nombreCurso;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -98,7 +99,7 @@ public class Curso {
     // Metodos
     public void registrarRequisito(Curso pCurso) throws CursoAlreadyExistsException {
         for (Curso curso : this.requisitos) {
-            if (curso.getCodigo() == pCurso.getCodigo())
+            if (Objects.equals(curso.getCodigo(), pCurso.getCodigo()))
                 throw new CursoAlreadyExistsException(pCurso.getCodigo());
         }
         this.requisitos.add(pCurso);
@@ -112,10 +113,10 @@ public class Curso {
         this.coRequisitos.add(pCurso);
     }
 
-    public void eliminarRequisito(int pCurso) throws CursoDoesntExistException {
+    public void eliminarRequisito(String pCurso) throws CursoDoesntExistException {
         boolean deleted = false;
         for (int index = 0; index < this.requisitos.size(); index++) {
-            if (this.requisitos.get(index).getCodigo() == pCurso) {
+            if (Objects.equals(this.requisitos.get(index).getCodigo(), pCurso)) {
                 this.requisitos.remove(index);
                 deleted = true;
                 break;
@@ -125,17 +126,17 @@ public class Curso {
             throw new CursoDoesntExistException(pCurso);
     }
 
-    public Curso consultarRequisito(int idCurso) throws CursoDoesntExistException {
+    public Curso consultarRequisito(String idCurso) throws CursoDoesntExistException {
         for (Curso requisito : this.requisitos) {
-            if (requisito.getCodigo() == idCurso)
+            if (Objects.equals(requisito.getCodigo(), idCurso))
                 return requisito;
         }
         throw new CursoDoesntExistException(idCurso);
     }
 
-    public Curso consultarCorequisito(int idCurso) throws CursoDoesntExistException {
+    public Curso consultarCorequisito(String idCurso) throws CursoDoesntExistException {
         for (Curso corequisito : this.coRequisitos) {
-            if (corequisito.getCodigo() == idCurso)
+            if (Objects.equals(corequisito.getCodigo(), idCurso))
                 return corequisito;
         }
         throw new CursoDoesntExistException(idCurso);

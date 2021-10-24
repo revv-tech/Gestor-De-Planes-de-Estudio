@@ -2,8 +2,10 @@ package com.sistema.logicadenegocios;
 
 import com.sistema.excepciones.CursoAlreadyExistsException;
 import com.sistema.excepciones.CursoDoesntExistException;
+import com.sistema.excepciones.PlanDeEstudioDoesntExistException;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Escuela {
     // Atributos
@@ -73,10 +75,10 @@ public class Escuela {
      * @param pCurso `int` (Curso que se desea eliminar
      * @throws CursoDoesntExistException en caso de que no exista el curso en la escuela
      */
-    public void eliminarCurso(int pCurso) throws CursoDoesntExistException {
+    public void eliminarCurso(String pCurso) throws CursoDoesntExistException {
         boolean deleted = false;
         for (int index = 0; index < this.cursos.size(); index++) {
-            if (this.cursos.get(index).getCodigo() == pCurso) {
+            if (Objects.equals(this.cursos.get(index).getCodigo(), pCurso)) {
                 this.cursos.remove(index);
                 deleted = true;
                 break;
@@ -86,7 +88,4 @@ public class Escuela {
             throw new CursoDoesntExistException(pCurso);
     }
 
-    public void consultarPlan(int codigoPlan) {
-        // Debe buscar un plan que este asociado a la escuela por el codigo dado (Requerimiento 5)
-    }
 }
