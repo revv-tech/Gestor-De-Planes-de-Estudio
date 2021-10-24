@@ -70,23 +70,23 @@ public class Escuela {
 
     /**
      *
-     * @param pCurso `Curso` (Curso que se desea eliminar
+     * @param pCurso `int` (Curso que se desea eliminar
      * @throws CursoDoesntExistException en caso de que no exista el curso en la escuela
      */
-    public void eliminarCurso(Curso pCurso) throws CursoDoesntExistException {
+    public void eliminarCurso(int pCurso) throws CursoDoesntExistException {
         boolean deleted = false;
         for (int index = 0; index < this.cursos.size(); index++) {
-            if (this.cursos.get(index).getCodigo() == pCurso.getCodigo()) {
+            if (this.cursos.get(index).getCodigo() == pCurso) {
                 this.cursos.remove(index);
                 deleted = true;
                 break;
             }
         }
         if (!deleted)
-            throw new CursoDoesntExistException(pCurso.getCodigo());
+            throw new CursoDoesntExistException(pCurso);
     }
 
-    public void consultarPlan(String codigoPlan) {
+    public void consultarPlan(int codigoPlan) {
         // Debe buscar un plan que este asociado a la escuela por el codigo dado (Requerimiento 5)
     }
 }

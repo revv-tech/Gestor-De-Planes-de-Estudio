@@ -112,17 +112,17 @@ public class Curso {
         this.coRequisitos.add(pCurso);
     }
 
-    public void eliminarRequisito(Curso pCurso) throws CursoDoesntExistException {
+    public void eliminarRequisito(int pCurso) throws CursoDoesntExistException {
         boolean deleted = false;
         for (int index = 0; index < this.requisitos.size(); index++) {
-            if (this.requisitos.get(index).getCodigo() == pCurso.getCodigo()) {
+            if (this.requisitos.get(index).getCodigo() == pCurso) {
                 this.requisitos.remove(index);
                 deleted = true;
                 break;
             }
         }
         if (!deleted)
-            throw new CursoDoesntExistException(pCurso.getCodigo());
+            throw new CursoDoesntExistException(pCurso);
     }
 
     public Curso consultarRequisito(int idCurso) throws CursoDoesntExistException {

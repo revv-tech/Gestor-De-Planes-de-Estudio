@@ -89,5 +89,13 @@ public class Controlador {
     public void registrarCursoEnEscuela(Curso pCurso, String idEscuela) throws CursoAlreadyExistsException, EscuelaDoesntExistException {
         this.getEscuela(idEscuela).registrarCurso(pCurso);
     }
-    
+
+    public void eliminarCursoEscuela(String idEscuela, int idCurso) throws EscuelaDoesntExistException, CursoDoesntExistException {
+        this.getEscuela(idEscuela).eliminarCurso(idCurso);
+    }
+
+    public void eliminarRequisitoCursoPlanEstudio(int idRequisito, int idPlanEstudio, int idCurso) throws CursoDoesntExistException, PlanDeEstudioDoesntExistException {
+        this.getPlanDeEstudio(idPlanEstudio).getCurso(idCurso).eliminarRequisito(idRequisito);
+    }
+
 }
