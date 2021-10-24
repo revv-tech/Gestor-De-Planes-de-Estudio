@@ -23,8 +23,8 @@ public class Main {
         Escuela escuela1 = new Escuela(hs2,"2");
         escuelas.add(escuela);
         escuelas.add(escuela1);
-        PlanDeEstudio planComputacion = new PlanDeEstudio(1,1);
-        PlanDeEstudio planComputadores = new PlanDeEstudio(2,2);
+        PlanDeEstudio planComputacion = new PlanDeEstudio("1",1);
+        PlanDeEstudio planComputadores = new PlanDeEstudio("2",2);
         planDeEstudios.add(planComputacion);
         planDeEstudios.add(planComputadores);
 /*

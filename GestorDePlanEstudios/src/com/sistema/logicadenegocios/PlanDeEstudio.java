@@ -5,23 +5,24 @@ import com.sistema.excepciones.CursoDoesntExistException;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class PlanDeEstudio {
     // Atributos
-    private int escuelaPropietaria; // hay que cambiar a String porque el codigo de la escuela puede ser CI,CA....
+    private String escuelaPropietaria; // hay que cambiar a String porque el codigo de la escuela puede ser CI,CA....
     private int codigoPlanEstudios; // numero de 4 digitos
     private Date vigenciaPlan;
     private final ArrayList<Curso> cursos;
 
     // Constructores
     public PlanDeEstudio() {
-        this.escuelaPropietaria = -1;
+        this.escuelaPropietaria = "";
         this.codigoPlanEstudios = -1;
         this.vigenciaPlan = new Date();
         this.cursos = new ArrayList<>();
     }
 
-    public PlanDeEstudio(int escuelaPropietaria, int codigoPlanEstudios) {
+    public PlanDeEstudio(String escuelaPropietaria, int codigoPlanEstudios) {
         this.escuelaPropietaria = escuelaPropietaria;
         this.codigoPlanEstudios = codigoPlanEstudios;
         this.setVigenciaPlan();
@@ -29,11 +30,11 @@ public class PlanDeEstudio {
     }
 
     // Metodos Accesores
-    public int getEscuelaPropietaria() {
+    public String getEscuelaPropietaria() {
         return escuelaPropietaria;
     }
 
-    public void setEscuelaPropietaria(int escuelaPropietaria) {
+    public void setEscuelaPropietaria(String escuelaPropietaria) {
         this.escuelaPropietaria = escuelaPropietaria;
     }
 
@@ -88,10 +89,10 @@ public class PlanDeEstudio {
      * @param codigoCurso `Curso` (Curso que se desea eliminar)
      * @throws CursoDoesntExistException en caso de que no exista el curso en la escuela
      */
-    public void eliminarCurso(int codigoCurso) throws CursoDoesntExistException {
+    public void eliminarCurso(String codigoCurso) throws CursoDoesntExistException {
         boolean deleted = false;
         for (int index = 0; index < this.cursos.size(); index++) {
-            if (this.cursos.get(index).getCodigo() == codigoCurso) {
+            if (Objects.equals(this.cursos.get(index).getCodigo(), codigoCurso)) {
                 this.cursos.remove(index);
                 deleted = true;
                 break;
@@ -102,28 +103,20 @@ public class PlanDeEstudio {
     }
 
 
-    public Curso getCurso(int codigoCurso) throws CursoDoesntExistException{
+    public Curso getCurso(String codigoCurso) throws CursoDoesntExistException{
         for (Curso curso : this.cursos) {
-            if (curso.getCodigo() == codigoCurso)
+            if (Objects.equals(curso.getCodigo(), codigoCurso))
                 return curso;
         }
         throw new CursoDoesntExistException(codigoCurso);
     }
 
-    public boolean hasCurso(int codigoCurso) {
+    public boolean hasCurso(String codigoCurso) {
         for (Curso curso : this.cursos) {
-            if (curso.getCodigo() == codigoCurso)
+            if (Objects.equals(curso.getCodigo(), codigoCurso))
                 return true;
         }
         return false;
     }
 
-    public int cantBloques() {
-        int maxBloque = Integer.MIN_VALUE;
-        for (Curso curso : this.cursos) {
-            if (curso.getBloque() > maxBloque)
-                maxBloque = curso.getBloque();
-        }
-        return maxBloque;
-    }
 }

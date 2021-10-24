@@ -1,13 +1,13 @@
 package com.sistema.excepciones;
 
 public class CursoDoesntExistException extends Exception{
-    private final int codigoCurso;
+    private final String codigoCurso;
 
-    public CursoDoesntExistException(int codigoCurso) {
+    public CursoDoesntExistException(String codigoCurso) {
         this.codigoCurso = codigoCurso;
     }
 
-    public int getCodigoCurso() {
+    public String getCodigoCurso() {
         return codigoCurso;
     }
 
