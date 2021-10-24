@@ -51,7 +51,7 @@ public class PlanDeEstudio {
 
     public void setVigenciaPlan() {
         Date date = new Date();
-        date.setDate(date.getMonth() + 4);
+        date.setDate(date.getMonth() + 24);
         this.vigenciaPlan = date;
     }
 
@@ -85,19 +85,45 @@ public class PlanDeEstudio {
 
     /**
      *
-     * @param pCurso `Curso` (Curso que se desea eliminar
+     * @param codigoCurso `Curso` (Curso que se desea eliminar)
      * @throws CursoDoesntExistException en caso de que no exista el curso en la escuela
      */
-    public void eliminarCurso(Curso pCurso) throws CursoDoesntExistException {
+    public void eliminarCurso(int codigoCurso) throws CursoDoesntExistException {
         boolean deleted = false;
         for (int index = 0; index < this.cursos.size(); index++) {
-            if (this.cursos.get(index).getCodigo() == pCurso.getCodigo()) {
+            if (this.cursos.get(index).getCodigo() == codigoCurso) {
                 this.cursos.remove(index);
                 deleted = true;
                 break;
             }
         }
         if (!deleted)
-            throw new CursoDoesntExistException(pCurso.getCodigo());
+            throw new CursoDoesntExistException(codigoCurso);
+    }
+
+
+    public Curso getCurso(int codigoCurso) throws CursoDoesntExistException{
+        for (Curso curso : this.cursos) {
+            if (curso.getCodigo() == codigoCurso)
+                return curso;
+        }
+        throw new CursoDoesntExistException(codigoCurso);
+    }
+
+    public boolean hasCurso(int codigoCurso) {
+        for (Curso curso : this.cursos) {
+            if (curso.getCodigo() == codigoCurso)
+                return true;
+        }
+        return false;
+    }
+
+    public int cantBloques() {
+        int maxBloque = Integer.MIN_VALUE;
+        for (Curso curso : this.cursos) {
+            if (curso.getBloque() > maxBloque)
+                maxBloque = curso.getBloque();
+        }
+        return maxBloque;
     }
 }
