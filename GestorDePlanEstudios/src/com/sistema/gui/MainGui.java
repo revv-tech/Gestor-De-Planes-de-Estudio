@@ -1,5 +1,7 @@
 package com.sistema.gui;
 
+import com.sistema.controladores.Controlador;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
