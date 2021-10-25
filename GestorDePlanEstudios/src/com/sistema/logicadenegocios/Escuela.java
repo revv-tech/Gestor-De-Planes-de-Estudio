@@ -26,6 +26,12 @@ public class Escuela {
         this.cursos = new ArrayList<>();
     }
 
+    public Escuela(String nombre, String codigo, ArrayList<Curso> cursos) {
+        this.nombre = nombre;
+        this.codigo = codigo;
+        this.cursos = cursos;
+    }
+
     // Métodos Accesores
     public String getNombre() {
         return nombre;
@@ -46,6 +52,8 @@ public class Escuela {
     public ArrayList<Curso> getCursos() {
         return cursos;
     }
+
+
 
     // Override Super-class
     @Override

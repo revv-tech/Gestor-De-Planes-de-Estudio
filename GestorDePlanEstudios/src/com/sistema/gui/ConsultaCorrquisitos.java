@@ -15,11 +15,11 @@ import java.util.ArrayList;
  */
 public class ConsultaCorrquisitos extends JFrame{
   private JPanel ConsultaCorrequisitos;
-  private JTextField textFieldNombre;
   private JTextField textFieldCodigo;
   private JButton consultarButton;
   private JButton volverButton;
   private JTable table1;
+  private JComboBox comboBox1;
 
   /** Constructor */
   public ConsultaCorrquisitos() {
@@ -29,7 +29,8 @@ public class ConsultaCorrquisitos extends JFrame{
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
     setIconImage(new ImageIcon(getClass().getResource("Icon/logo.png")).getImage());
-
+    comboBox1.setModel(new DefaultComboBoxModel(Controlador.CURSOS.toArray()));
+    textFieldCodigo.setEditable(false);
     consultarButton.addActionListener(new ActionListener() {
       /**
        * Realiza la consulta de los correquisitos del curso.
@@ -40,15 +41,18 @@ public class ConsultaCorrquisitos extends JFrame{
 
          String columnas[] = {"Nombre Curso", "Código", "Créditos", "Horas Lectivas"};
          DefaultTableModel tb = new DefaultTableModel(columnas,0);
-         String nombreCurso = textFieldNombre.getText();
-         String codigoCurso = textFieldCodigo.getText();
-         ArrayList<Curso> cursos = Controlador.getRequisitos(codigoCurso);
+         Curso curso = (Curso) comboBox1.getSelectedItem();
+         textFieldCodigo.setText(curso.getCodigo());
+         ArrayList<Curso> cursos = Controlador.getCorequisitos(curso.getCodigo());
+
+
+
          if (cursos != null) {
            table1.setModel(tb);
            tb.addRow(columnas);
 
-           for (Curso curso : cursos) {
-             Object[] object = {curso.getNombreCurso(), curso.getCodigo(), String.valueOf(curso.getCreditos()), String.valueOf(curso.getHorasLectivas())};
+           for (Curso pCurso : cursos) {
+             Object[] object = {pCurso.getNombreCurso(), pCurso.getCodigo(), String.valueOf(pCurso.getCreditos()), String.valueOf(pCurso.getHorasLectivas())};
              tb.addRow(object);
            }
          }

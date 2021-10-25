@@ -2,6 +2,7 @@ package com.sistema.logicadenegocios;
 
 import com.sistema.excepciones.CursoAlreadyExistsException;
 import com.sistema.excepciones.CursoDoesntExistException;
+import jdk.swing.interop.SwingInterOpUtils;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -105,6 +106,7 @@ public class Curso {
             if (Objects.equals(curso.getCodigo(), pCurso.getCodigo()))
                 throw new CursoAlreadyExistsException(pCurso.getCodigo());
         }
+
         this.requisitos.add(pCurso);
     }
 
