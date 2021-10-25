@@ -1,8 +1,15 @@
 package com.sistema.gui;
 
+import com.sistema.controladores.Controlador;
+import com.sistema.excepciones.CursoAlreadyExistsException;
+import com.sistema.excepciones.CursoDoesntExistException;
+import com.sistema.excepciones.EscuelaDoesntExistException;
+import com.sistema.logicadenegocios.Curso;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * @author Francisco Javier Ovares Rojas
@@ -28,6 +35,9 @@ public class RequisitoCorrequisito extends JFrame{
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
     setIconImage(new ImageIcon(getClass().getResource("Icon/logo.png")).getImage());
+    comboBoxEscuelas.setModel(new DefaultComboBoxModel(Controlador.ESCUELAS.toArray()));
+    comboBoxCodigoRquisito.setModel(new DefaultComboBoxModel(Controlador.CURSOS.toArray()));
+    comboBoxCodigoCorrequisito.setModel(new DefaultComboBoxModel(Controlador.CURSOS.toArray()));
 
     cerrarButton.addActionListener(new ActionListener() {
       /**
@@ -47,6 +57,13 @@ public class RequisitoCorrequisito extends JFrame{
        */
       @Override
       public void actionPerformed(ActionEvent e) {
+        try {
+          Curso cursoSelected = Controlador.getCurso(comboBoxCodigoRquisito.getSelectedItem().toString());
+          Controlador.registrarRequisito(cursoSelected, comboBoxEscuelas.getSelectedItem().toString(), comboBoxCodigoCurso.getSelectedItem().toString());
+        } catch (CursoDoesntExistException | CursoAlreadyExistsException | EscuelaDoesntExistException ex) {
+          System.out.println(ex.getMessage());
+        }
+
         setVisible(false);
         Registro nuevoRegistro = new Registro();
         nuevoRegistro.setVisible(true);
@@ -60,9 +77,32 @@ public class RequisitoCorrequisito extends JFrame{
        */
       @Override
       public void actionPerformed(ActionEvent e) {
+        try {
+          Curso cursoSelected = Controlador.getCurso(comboBoxCodigoRquisito.getSelectedItem().toString());
+          Controlador.registrarCorequisito(cursoSelected, comboBoxEscuelas.getSelectedItem().toString(), comboBoxCodigoCurso.getSelectedItem().toString());
+        } catch (CursoDoesntExistException | CursoAlreadyExistsException | EscuelaDoesntExistException ex) {
+          System.out.println(ex.getMessage());
+        }
+
         setVisible(false);
         Registro nuevoRegistro = new Registro();
         nuevoRegistro.setVisible(true);
+      }
+    });
+    btnRefreshCursos.addActionListener(new ActionListener() {
+      /**
+       * Invoked when an action occurs.
+       *
+       * @param e the event to be processed
+       */
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        try {
+          ArrayList<Curso> cursosDisponibles = Controlador.getEscuela(comboBoxEscuelas.getSelectedItem().toString()).getCursos();
+          comboBoxCodigoCurso.setModel(new DefaultComboBoxModel(cursosDisponibles.toArray()));
+        } catch (EscuelaDoesntExistException ex) {
+          System.out.println(ex.getMessage());
+        }
       }
     });
   }

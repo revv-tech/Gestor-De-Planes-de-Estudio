@@ -1,8 +1,13 @@
 package com.sistema.gui;
 
+import com.sistema.controladores.Controlador;
+import com.sistema.excepciones.PlanDeEstudioAlreadyExistsException;
+import com.sistema.logicadenegocios.PlanDeEstudio;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 /**
  * @author Francisco Javier Ovares Rojas
@@ -26,7 +31,8 @@ public class PlanEstudio extends JFrame{
     setSize(600,500);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
-    setIconImage(new ImageIcon(getClass().getResource("Icon/logo.png")).getImage());
+    setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource("Icon/logo.png"))).getImage());
+    comboBoxEscuelas.setModel(new DefaultComboBoxModel(Controlador.ESCUELAS.toArray()));
 
     regresarButton.addActionListener(new ActionListener() {
       /**
@@ -48,7 +54,12 @@ public class PlanEstudio extends JFrame{
        */
       @Override
       public void actionPerformed(ActionEvent e) {
-
+        PlanDeEstudio planDeEstudio = new PlanDeEstudio(Objects.requireNonNull(comboBoxEscuelas.getSelectedItem()).toString(), Integer.parseInt(textFieldCodigoPlan.getText().toString()));
+        try {
+          Controlador.agregarPlanDeEstudio(planDeEstudio);
+        } catch (PlanDeEstudioAlreadyExistsException ex) {
+          System.out.println(ex.getMessage());
+        }
       }
     });
   }

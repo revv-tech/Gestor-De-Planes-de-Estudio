@@ -68,7 +68,7 @@ public class ConsultaPlan extends JFrame{
     verPlanes.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        ArrayList<PlanDeEstudio> planesDeEscuela = Controlador.getPlanesDeUnaEscuela(comboBoxEscuelas.getSelectedItem().toString());
+        ArrayList<PlanDeEstudio> planesDeEscuela = Controlador.getPlanesDeUnaEscuela(Objects.requireNonNull(comboBoxEscuelas.getSelectedItem()).toString());
         planesComboBox.setModel(new DefaultComboBoxModel(planesDeEscuela.toArray()));
       }
     });

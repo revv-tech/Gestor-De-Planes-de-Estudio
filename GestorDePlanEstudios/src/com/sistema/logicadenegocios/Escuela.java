@@ -61,7 +61,7 @@ public class Escuela {
      */
     public void registrarCurso(Curso pCurso) throws CursoAlreadyExistsException {
         for (Curso curso : this.cursos) {
-            if (curso.getCodigo() == pCurso.getCodigo())
+            if (Objects.equals(curso.getCodigo(), pCurso.getCodigo()))
                 throw new CursoAlreadyExistsException(pCurso.getCodigo());
         }
         this.cursos.add(pCurso);
@@ -83,6 +83,14 @@ public class Escuela {
         }
         if (!deleted)
             throw new CursoDoesntExistException(pCurso);
+    }
+
+    public Curso getCurso(String codigoCurso) throws CursoDoesntExistException {
+        for (Curso curso : this.cursos) {
+            if (Objects.equals(curso.getCodigo(), codigoCurso))
+                return curso;
+        }
+        throw new CursoDoesntExistException(codigoCurso);
     }
 
 }

@@ -45,7 +45,15 @@ public class Controlador {
 
     }
 
-    private static ArrayList<PlanDeEstudio> getPlanesConCurso(String codCurso) {
+    public static Curso getCurso(String codigoCurso) throws CursoDoesntExistException {
+        for (Curso curso : CURSOS) {
+            if (Objects.equals(curso.getCodigo(), codigoCurso))
+                return curso;
+        }
+        throw new CursoDoesntExistException(codigoCurso);
+    }
+
+    public static ArrayList<PlanDeEstudio> getPlanesConCurso(String codCurso) {
         ArrayList<PlanDeEstudio> planesXCurso = new ArrayList<>();
         for (PlanDeEstudio planDeEstudio : PLANES_DE_ESTUDIOS) {
             if (planDeEstudio.hasCurso(codCurso))
@@ -111,12 +119,12 @@ public class Controlador {
         getPlanDeEstudio(idPlanEstudio).eliminarCurso(idCurso);
     }
 
-    public static void registrarRequisito(Curso pRequisito, int idPlanEstudio, String idCurso) throws CursoAlreadyExistsException, PlanDeEstudioDoesntExistException, CursoDoesntExistException {
-        getPlanDeEstudio(idPlanEstudio).getCurso(idCurso).registrarRequisito(pRequisito);
+    public static void registrarRequisito(Curso pRequisito, String codigoEscuela, String idCurso) throws CursoAlreadyExistsException, CursoDoesntExistException, EscuelaDoesntExistException {
+        getEscuela(codigoEscuela).getCurso(idCurso).registrarRequisito(pRequisito);
     }
 
-    public static void registrarCorequisito(Curso pCorequisito, int idPlanEstudio, String idCurso) throws CursoAlreadyExistsException, PlanDeEstudioDoesntExistException, CursoDoesntExistException {
-        getPlanDeEstudio(idPlanEstudio).getCurso(idCurso).registrarCorequisito(pCorequisito);
+    public static void registrarCorequisito(Curso pRequisito, String codigoEscuela, String idCurso) throws CursoAlreadyExistsException, CursoDoesntExistException, EscuelaDoesntExistException {
+        getEscuela(codigoEscuela).getCurso(idCurso).registrarCorequisito(pRequisito);
     }
 
     public static void registrarCursoEmPlanEstudio(Curso pCurso, int idPlanEstudio) throws CursoAlreadyExistsException, PlanDeEstudioDoesntExistException {

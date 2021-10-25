@@ -1,8 +1,14 @@
 package com.sistema.gui;
 
+import com.sistema.controladores.Controlador;
+import com.sistema.logicadenegocios.Curso;
+import com.sistema.logicadenegocios.PlanDeEstudio;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * @author Francisco Javier Ovares Rojas
@@ -13,7 +19,6 @@ public class ConsultarCurso extends JFrame{
   private JPanel ConsultaCurso;
   private JButton consultarButton;
   private JButton limpiarCamposButton;
-  private JTextField textFieldNombre;
   private JTextField textFieldCodigo;
   private JButton volverButton;
   private JList listPlanesDeEstudio;
@@ -24,7 +29,7 @@ public class ConsultarCurso extends JFrame{
     setSize(500,400);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
-    setIconImage(new ImageIcon(getClass().getResource("Icon/logo.png")).getImage());
+    setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource("Icon/logo.png"))).getImage());
 
     volverButton.addActionListener(new ActionListener() {
       /**
@@ -46,7 +51,12 @@ public class ConsultarCurso extends JFrame{
        */
       @Override
       public void actionPerformed(ActionEvent e) {
-
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        ArrayList<PlanDeEstudio> planesConCurso = Controlador.getPlanesConCurso(textFieldCodigo.getText());
+        for (PlanDeEstudio planDeEstudio : planesConCurso) {
+          listModel.addElement(planDeEstudio.toString());
+        }
+        listPlanesDeEstudio.setModel(listModel);
       }
     });
 
@@ -58,7 +68,6 @@ public class ConsultarCurso extends JFrame{
       @Override
       public void actionPerformed(ActionEvent e) {
         textFieldCodigo.setText(null);
-        textFieldNombre.setText(null);
         listPlanesDeEstudio.removeAll();
       }
     });
