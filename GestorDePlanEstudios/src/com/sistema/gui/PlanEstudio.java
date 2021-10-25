@@ -62,7 +62,9 @@ public class PlanEstudio extends JFrame{
         PlanDeEstudio planDeEstudio = new PlanDeEstudio(escuela.getCodigo(), Integer.parseInt(textFieldCodigoPlan.getText().toString()));
         try {
           Controlador.agregarPlanDeEstudio(planDeEstudio);
-        } catch (PlanDeEstudioAlreadyExistsException ex) {
+          Curso cursoAgregar = Controlador.getCurso(textFieldCodigoCurso.getText().toString());
+          Controlador.registrarCursoEmPlanEstudio(cursoAgregar, planDeEstudio.getCodigoPlanEstudios());
+        } catch (PlanDeEstudioAlreadyExistsException | CursoDoesntExistException | PlanDeEstudioDoesntExistException | CursoAlreadyExistsException ex) {
           System.out.println(ex.getMessage());
         }
       }
