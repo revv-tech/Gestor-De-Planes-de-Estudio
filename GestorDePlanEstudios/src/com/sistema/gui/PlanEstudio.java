@@ -2,6 +2,7 @@ package com.sistema.gui;
 
 import com.sistema.controladores.Controlador;
 import com.sistema.excepciones.PlanDeEstudioAlreadyExistsException;
+import com.sistema.logicadenegocios.Escuela;
 import com.sistema.logicadenegocios.PlanDeEstudio;
 
 import javax.swing.*;
@@ -22,9 +23,8 @@ public class PlanEstudio extends JFrame{
   private JButton regresarButton;
   private JComboBox comboBoxEscuelas;
   private JTextField textFieldCodigoPlan;
-  private JTextField textFieldVigencia;
 
-  /** Constructor */
+    /** Constructor */
   public PlanEstudio() {
     setContentPane(PlanEstudio);
     setTitle("Sistema Gestor de Planes de Estudio");
@@ -54,9 +54,11 @@ public class PlanEstudio extends JFrame{
        */
       @Override
       public void actionPerformed(ActionEvent e) {
-        PlanDeEstudio planDeEstudio = new PlanDeEstudio(Objects.requireNonNull(comboBoxEscuelas.getSelectedItem()).toString(), Integer.parseInt(textFieldCodigoPlan.getText().toString()));
+        Escuela escuela = (Escuela ) comboBoxEscuelas.getSelectedItem();
+        PlanDeEstudio planDeEstudio = new PlanDeEstudio(escuela.getCodigo(), Integer.parseInt(textFieldCodigoPlan.getText().toString()));
         try {
           Controlador.agregarPlanDeEstudio(planDeEstudio);
+
         } catch (PlanDeEstudioAlreadyExistsException ex) {
           System.out.println(ex.getMessage());
         }

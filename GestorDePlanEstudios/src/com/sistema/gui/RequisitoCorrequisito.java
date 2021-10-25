@@ -5,6 +5,7 @@ import com.sistema.excepciones.CursoAlreadyExistsException;
 import com.sistema.excepciones.CursoDoesntExistException;
 import com.sistema.excepciones.EscuelaDoesntExistException;
 import com.sistema.logicadenegocios.Curso;
+import com.sistema.logicadenegocios.Escuela;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -31,11 +32,11 @@ public class RequisitoCorrequisito extends JFrame{
   public RequisitoCorrequisito() {
     setContentPane(RequisitoCorrequisito);
     setTitle("Sistema Gestor de Planes de Estudio");
-    setSize(600,400);
+    setSize(800,400);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
     setIconImage(new ImageIcon(getClass().getResource("Icon/logo.png")).getImage());
-    comboBoxEscuelas.setModel(new DefaultComboBoxModel(Controlador.ESCUELAS.toArray()));
+    comboBoxEscuelas.setModel(new DefaultComboBoxModel(Controlador.ESCUELAS.toArray(new Escuela[0])));
     comboBoxCodigoRquisito.setModel(new DefaultComboBoxModel(Controlador.CURSOS.toArray()));
     comboBoxCodigoCorrequisito.setModel(new DefaultComboBoxModel(Controlador.CURSOS.toArray()));
 
@@ -58,8 +59,11 @@ public class RequisitoCorrequisito extends JFrame{
       @Override
       public void actionPerformed(ActionEvent e) {
         try {
-          Curso cursoSelected = Controlador.getCurso(comboBoxCodigoRquisito.getSelectedItem().toString());
-          Controlador.registrarRequisito(cursoSelected, comboBoxEscuelas.getSelectedItem().toString(), comboBoxCodigoCurso.getSelectedItem().toString());
+          Curso requisito = (Curso) comboBoxCodigoRquisito.getSelectedItem();
+          Curso cursoSelected = (Curso) comboBoxCodigoCurso.getSelectedItem();
+          Escuela escuela = (Escuela) comboBoxEscuelas.getSelectedItem();
+
+          Controlador.registrarRequisito(requisito, escuela.getCodigo(), cursoSelected.getCodigo());
         } catch (CursoDoesntExistException | CursoAlreadyExistsException | EscuelaDoesntExistException ex) {
           System.out.println(ex.getMessage());
         }
@@ -78,8 +82,10 @@ public class RequisitoCorrequisito extends JFrame{
       @Override
       public void actionPerformed(ActionEvent e) {
         try {
-          Curso cursoSelected = Controlador.getCurso(comboBoxCodigoRquisito.getSelectedItem().toString());
-          Controlador.registrarCorequisito(cursoSelected, comboBoxEscuelas.getSelectedItem().toString(), comboBoxCodigoCurso.getSelectedItem().toString());
+          Curso coRequisito = (Curso) comboBoxCodigoCorrequisito.getSelectedItem();
+          Curso cursoSelected = (Curso) comboBoxCodigoCurso.getSelectedItem();
+          Escuela escuela = (Escuela) comboBoxEscuelas.getSelectedItem();
+          Controlador.registrarCorequisito(coRequisito, escuela.getCodigo(), cursoSelected.getCodigo());
         } catch (CursoDoesntExistException | CursoAlreadyExistsException | EscuelaDoesntExistException ex) {
           System.out.println(ex.getMessage());
         }
@@ -97,12 +103,19 @@ public class RequisitoCorrequisito extends JFrame{
        */
       @Override
       public void actionPerformed(ActionEvent e) {
+
+        Escuela escuela = (Escuela) comboBoxEscuelas.getSelectedItem();
+        System.out.println(escuela.getCursos());
+        ArrayList<Curso> cursosDisponibles;
         try {
-          ArrayList<Curso> cursosDisponibles = Controlador.getEscuela(comboBoxEscuelas.getSelectedItem().toString()).getCursos();
+          cursosDisponibles = Controlador.getEscuela(escuela.getCodigo()).getCursos();
+          System.out.println( escuela.getCodigo());
           comboBoxCodigoCurso.setModel(new DefaultComboBoxModel(cursosDisponibles.toArray()));
         } catch (EscuelaDoesntExistException ex) {
-          System.out.println(ex.getMessage());
+          ex.printStackTrace();
         }
+
+
       }
     });
   }

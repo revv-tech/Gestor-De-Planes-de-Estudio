@@ -49,8 +49,8 @@ public class ConsultaPlan extends JFrame{
       @Override
       public void actionPerformed(ActionEvent e) {
         PlanDeEstudio planDeEstudio = (PlanDeEstudio) planesComboBox.getSelectedItem();
-
         ArrayList<Curso> cursos = planDeEstudio.getCursos();
+
         String columnas[] = {"Nombre Curso", "Código", "Créditos", "Horas Lectivas"};
         DefaultTableModel tb = new DefaultTableModel(columnas,0);
         tableCursosInformacion.setModel(tb);

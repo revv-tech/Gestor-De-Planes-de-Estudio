@@ -72,6 +72,7 @@ public class Controlador {
     }
 
     public static void agregarPlanDeEstudio(PlanDeEstudio appendedPlanDeEstudio) throws PlanDeEstudioAlreadyExistsException {
+
         for (PlanDeEstudio planDeEstudio : PLANES_DE_ESTUDIOS) {
             if (planDeEstudio.getCodigoPlanEstudios() == appendedPlanDeEstudio.getCodigoPlanEstudios())
                 throw new PlanDeEstudioAlreadyExistsException(appendedPlanDeEstudio.getCodigoPlanEstudios());
@@ -144,28 +145,40 @@ public class Controlador {
     }
 
     public static ArrayList<Curso> getRequisitos(String codigo){
-        for (Curso curso : CURSOS){
-            if (curso.getCodigo().equals(codigo)){
-                return curso.getRequisitos();
+
+        for (Escuela escuela :ESCUELAS) {
+            for (Curso curso : escuela.getCursos()) {
+                if (curso.getCodigo().equals(codigo)) {
+                    return curso.getRequisitos();
+                }
+            }
+        }
+        return null;
+    }
+
+    public static ArrayList<Curso> getCorequisitos(String codigo){
+
+        for (Escuela escuela :ESCUELAS) {
+            for (Curso curso : escuela.getCursos()) {
+                if (curso.getCodigo().equals(codigo)) {
+                    return curso.getCoRequisitos();
+                }
             }
         }
         return null;
     }
 
     public static void cargarArchivosPrueba() throws CursoAlreadyExistsException {
-        ArrayList<Curso> cursos = new ArrayList<>();
+        ArrayList<Curso> cursosCI = new ArrayList<>();
+        ArrayList<Curso> cursosCC = new ArrayList<>();
+        ArrayList<Curso> cursosEA = new ArrayList<>();
         ArrayList<Escuela> escuelas = new ArrayList<>();
         ArrayList<PlanDeEstudio> planDeEstudios = new ArrayList<>();
         String est = "Marco Reveiz";
         String hs = "Escuela de Ingeniería en Computación";
         String hs2 = "Escuela de Ingeniería en Computadores";
         String hs3 = "Escuela de Administración";
-        Escuela escuela = new Escuela(hs,"CI");
-        Escuela escuela1 = new Escuela(hs2,"CC");
-        Escuela escuela2 = new Escuela(hs3,"EA");
-        escuelas.add(escuela);
-        escuelas.add(escuela1);
-        escuelas.add(escuela2);
+
         PlanDeEstudio planComputacion = new PlanDeEstudio("CI",1012);
         PlanDeEstudio planComputacion2 = new PlanDeEstudio("CI",2212);
         PlanDeEstudio planComputadores = new PlanDeEstudio("CC",4122);
@@ -184,11 +197,11 @@ public class Controlador {
         Curso datos = new Curso("CI","Estrcuturas de Datos", "CI - 1029", 5, 10);
         Curso bases = new Curso("CI","Bases de Datos", "CI - 1022", 4, 4);
         Curso bases2 = new Curso("CI","Bases de Datos II", "CI - 1024", 4, 4);
-        cursos.add(foc);
-        cursos.add(intro);
-        cursos.add(taller);
-        cursos.add(datos);
-        cursos.add(bases);
+        cursosCI.add(foc);
+        cursosCI.add(intro);
+        cursosCI.add(taller);
+        cursosCI.add(datos);
+        cursosCI.add(bases);
         planComputacion.registrarCurso(foc);
         planComputacion.registrarCurso(intro);
         planComputacion.registrarCurso(taller);
@@ -201,32 +214,51 @@ public class Controlador {
         planComputacion2.registrarCurso(bases);
         planComputacion2.registrarCurso(bases2);
 
+        Escuela escuela = new Escuela(hs,"CI",cursosCI);
+
+
+
         Curso cont = new Curso("EA","Contabilidad", "EA - 2025", 5, 8);
         Curso prob = new Curso("EA","Probabilidadn", "EA - 2026", 4, 8);
         Curso admi = new Curso("EA","Administración General", "EA - 2023", 4, 6);
         Curso matGen = new Curso("EA","Matemática General", "EA - 2029", 5, 10);
-        cursos.add(cont);
-        cursos.add(prob);
-        cursos.add(admi);
-        cursos.add(matGen);
+        cursosEA.add(cont);
+        cursosEA.add(prob);
+        cursosEA.add(admi);
+        cursosEA.add(matGen);
         planAdministracion.registrarCurso(cont);
         planAdministracion.registrarCurso(prob);
         planAdministracion.registrarCurso(admi);
         planAdministracion.registrarCurso(matGen);
 
+
+        Escuela escuela2 = new Escuela(hs3,"EA",cursosEA);
+
+
+
+
         Curso reque = new Curso("CC","Requerimientos de Hardware", "CC - 4025", 5, 8);
         Curso reque2 = new Curso("CC","Requerimientos de Hardware II", "CC - 4026", 4, 8);
         Curso cir = new Curso("CC","Hardware Bósico", "CC - 4023", 4, 6);
 
-        cursos.add(reque);
-        cursos.add(reque2);
-        cursos.add(cir);
+        cursosCC.add(reque);
+        cursosCC.add(reque2);
+        cursosCC.add(cir);
 
         planComputadores.registrarCurso(reque);
         planComputadores.registrarCurso(reque2);
         planComputadores.registrarCurso(cir);
 
+        Escuela escuela1 = new Escuela(hs2,"CC",cursosCC);
 
+
+        escuelas.add(escuela);
+        escuelas.add(escuela1);
+        escuelas.add(escuela2);
+        ArrayList<Curso> cursos = new ArrayList<>();
+        cursos.addAll(cursosCC);
+        cursos.addAll(cursosEA);
+        cursos.addAll(cursosCI);
         Controlador.ESCUELAS = escuelas;
         Controlador.PLANES_DE_ESTUDIOS = planDeEstudios;
         Controlador.CURSOS = cursos;

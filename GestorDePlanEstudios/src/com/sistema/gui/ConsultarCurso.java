@@ -22,6 +22,7 @@ public class ConsultarCurso extends JFrame{
   private JTextField textFieldCodigo;
   private JButton volverButton;
   private JList listPlanesDeEstudio;
+  private JComboBox comboBox1;
 
   public ConsultarCurso() {
     setContentPane(ConsultaCurso);
@@ -30,6 +31,7 @@ public class ConsultarCurso extends JFrame{
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
     setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource("Icon/logo.png"))).getImage());
+    comboBox1.setModel(new DefaultComboBoxModel(Controlador.CURSOS.toArray()));
 
     volverButton.addActionListener(new ActionListener() {
       /**
@@ -52,9 +54,10 @@ public class ConsultarCurso extends JFrame{
       @Override
       public void actionPerformed(ActionEvent e) {
         DefaultListModel<String> listModel = new DefaultListModel<>();
-        ArrayList<PlanDeEstudio> planesConCurso = Controlador.getPlanesConCurso(textFieldCodigo.getText());
+        Curso curso = (Curso) comboBox1.getSelectedItem();
+        ArrayList<PlanDeEstudio> planesConCurso = Controlador.getPlanesConCurso(curso.getCodigo());
         for (PlanDeEstudio planDeEstudio : planesConCurso) {
-          listModel.addElement(planDeEstudio.toString());
+          listModel.addElement("Escuela Propietaria: " + planDeEstudio.getEscuelaPropietaria() +"  Código de Plan: " + planDeEstudio.toString());
         }
         listPlanesDeEstudio.setModel(listModel);
       }
