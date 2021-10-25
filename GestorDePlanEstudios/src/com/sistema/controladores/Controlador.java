@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Controlador {
-    public static  ArrayList<Escuela> ESCUELAS = new ArrayList<>();
-    public static  ArrayList<PlanDeEstudio> PLANES_DE_ESTUDIOS = new ArrayList<>();
-    public static  ArrayList<Curso> CURSOS = new ArrayList<>();
+    public static ArrayList<Escuela> ESCUELAS = new ArrayList<>();
+    public static ArrayList<PlanDeEstudio> PLANES_DE_ESTUDIOS = new ArrayList<>();
+    public static ArrayList<Curso> CURSOS = new ArrayList<>();
 
 
     public Controlador() {}
@@ -52,7 +52,7 @@ public class Controlador {
                 planesXCurso.add(planDeEstudio);
         }
         return planesXCurso;
-    }
+    } 
 
     public static ArrayList<PlanDeEstudio> getPlanesDeUnaEscuela(String idEscuela) {
         ArrayList<PlanDeEstudio> planesEscuela = new ArrayList<>();
