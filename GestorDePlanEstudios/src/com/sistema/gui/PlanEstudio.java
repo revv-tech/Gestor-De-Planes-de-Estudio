@@ -1,7 +1,11 @@
 package com.sistema.gui;
 
 import com.sistema.controladores.Controlador;
+import com.sistema.excepciones.CursoAlreadyExistsException;
+import com.sistema.excepciones.CursoDoesntExistException;
 import com.sistema.excepciones.PlanDeEstudioAlreadyExistsException;
+import com.sistema.excepciones.PlanDeEstudioDoesntExistException;
+import com.sistema.logicadenegocios.Curso;
 import com.sistema.logicadenegocios.PlanDeEstudio;
 
 import javax.swing.*;
@@ -57,7 +61,9 @@ public class PlanEstudio extends JFrame{
         PlanDeEstudio planDeEstudio = new PlanDeEstudio(Objects.requireNonNull(comboBoxEscuelas.getSelectedItem()).toString(), Integer.parseInt(textFieldCodigoPlan.getText().toString()));
         try {
           Controlador.agregarPlanDeEstudio(planDeEstudio);
-        } catch (PlanDeEstudioAlreadyExistsException ex) {
+          Curso cursoAgregar = Controlador.getCurso(textFieldCodigoCurso.getText().toString());
+          Controlador.registrarCursoEmPlanEstudio(cursoAgregar, planDeEstudio.getCodigoPlanEstudios());
+        } catch (PlanDeEstudioAlreadyExistsException | CursoDoesntExistException | PlanDeEstudioDoesntExistException | CursoAlreadyExistsException ex) {
           System.out.println(ex.getMessage());
         }
       }
