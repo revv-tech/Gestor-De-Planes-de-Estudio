@@ -135,6 +135,15 @@ public class Controlador {
         getPlanDeEstudio(idPlanEstudio).getCurso(idCurso).eliminarRequisito(idRequisito);
     }
 
+    public static ArrayList<Curso> getRequisitos(String codigo){
+        for (Curso curso : CURSOS){
+            if (curso.getCodigo().equals(codigo)){
+                return curso.getRequisitos();
+            }
+        }
+        return null;
+    }
+
     public static void cargarArchivosPrueba() throws CursoAlreadyExistsException {
         ArrayList<Curso> cursos = new ArrayList<>();
         ArrayList<Escuela> escuelas = new ArrayList<>();
