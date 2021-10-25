@@ -18,6 +18,7 @@ public class RequisitoCorrequisito extends JFrame{
   private JButton registrarCorrequisitoButton;
   private JButton registrarRequisitoButton;
   private JButton cerrarButton;
+  private JButton btnRefreshCursos;
 
   /** Constructor */
   public RequisitoCorrequisito() {

@@ -7,6 +7,7 @@ import com.sistema.excepciones.CursoAlreadyExistsException;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 /**
  * @author Francisco Javier Ovares Rojas
@@ -31,7 +32,7 @@ public class MainGui extends JFrame{
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
     setLocationRelativeTo(null);
-    setIconImage(new ImageIcon(getClass().getResource("Icon/logo.png")).getImage());
+    setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource("Icon/logo.png"))).getImage());
 
 
     // Boton para cargar Json
