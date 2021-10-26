@@ -7,6 +7,12 @@ import com.sistema.excepciones.PlanDeEstudioDoesntExistException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Guarda la informacion de la escuela y todos los cursos relacionados a ella
+ *
+ * @autor Sebastian Lopez H
+ * @version 1.0
+ */
 public class Escuela {
     // Atributos
     private String nombre;
@@ -93,6 +99,12 @@ public class Escuela {
             throw new CursoDoesntExistException(pCurso);
     }
 
+    /**
+     *
+     * @param codigoCurso String
+     * @return Curso
+     * @throws CursoDoesntExistException si no encuentra el curso
+     */
     public Curso getCurso(String codigoCurso) throws CursoDoesntExistException {
         for (Curso curso : this.cursos) {
             if (Objects.equals(curso.getCodigo(), codigoCurso))

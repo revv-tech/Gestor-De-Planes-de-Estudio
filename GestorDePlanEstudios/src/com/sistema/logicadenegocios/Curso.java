@@ -101,6 +101,12 @@ public class Curso {
     }
 
     // Metodos
+
+    /**
+     *
+     * @param pCurso Curso
+     * @throws CursoAlreadyExistsException si el curso ya existe
+     */
     public void registrarRequisito(Curso pCurso) throws CursoAlreadyExistsException {
         for (Curso curso : this.requisitos) {
             if (Objects.equals(curso.getCodigo(), pCurso.getCodigo()))
@@ -110,6 +116,11 @@ public class Curso {
         this.requisitos.add(pCurso);
     }
 
+    /**
+     *
+     * @param pCurso Curso
+     * @throws CursoAlreadyExistsException si el curso ya existe
+     */
     public void registrarCorequisito(Curso pCurso) throws CursoAlreadyExistsException {
         for (Curso curso : this.coRequisitos) {
             if (curso.getCodigo() == pCurso.getCodigo())
@@ -118,6 +129,11 @@ public class Curso {
         this.coRequisitos.add(pCurso);
     }
 
+    /**
+     *
+     * @param pCurso String
+     * @throws CursoDoesntExistException si no encuentra el curso
+     */
     public void eliminarRequisito(String pCurso) throws CursoDoesntExistException {
         boolean deleted = false;
         for (int index = 0; index < this.requisitos.size(); index++) {
@@ -131,6 +147,12 @@ public class Curso {
             throw new CursoDoesntExistException(pCurso);
     }
 
+    /**
+     *
+     * @param idCurso String
+     * @return Curso
+     * @throws CursoDoesntExistException si no encuentra el curso
+     */
     public Curso consultarRequisito(String idCurso) throws CursoDoesntExistException {
         for (Curso requisito : this.requisitos) {
             if (Objects.equals(requisito.getCodigo(), idCurso))
@@ -139,6 +161,12 @@ public class Curso {
         throw new CursoDoesntExistException(idCurso);
     }
 
+    /**
+     *
+     * @param idCurso String
+     * @return Curso
+     * @throws CursoDoesntExistException si no existe el curso
+     */
     public Curso consultarCorequisito(String idCurso) throws CursoDoesntExistException {
         for (Curso corequisito : this.coRequisitos) {
             if (Objects.equals(corequisito.getCodigo(), idCurso))
@@ -147,6 +175,10 @@ public class Curso {
         throw new CursoDoesntExistException(idCurso);
     }
 
+    /**
+     *
+     * @return String
+     */
     public String mostrarRequisitos() {
         StringBuilder infoReqs = new StringBuilder("Requisitos de " + this.nombreCurso + ":\n");
         for (Curso requisito : this.requisitos) {
@@ -156,7 +188,10 @@ public class Curso {
     }
 
 
-
+    /**
+     *
+     * @return String
+     */
     public String mostrarCorequisitos() {
         StringBuilder infoCoreqs = new StringBuilder("Corequisitos de " + this.nombreCurso + ":\n");
         for (Curso corequisito : this.coRequisitos) {
