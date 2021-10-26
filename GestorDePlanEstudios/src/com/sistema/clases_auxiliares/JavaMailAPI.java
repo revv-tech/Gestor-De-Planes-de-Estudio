@@ -16,7 +16,12 @@ import java.util.Properties;
  */
 
 public class JavaMailAPI {
-
+    /**
+     *
+     * @param nombreEstudiante nombre del estudiante
+     * @param email mail del correo a enviar
+     * @throws Exception si no puede enviar el correo
+     */
     public static void enviarCorreo (String nombreEstudiante, String email) throws Exception{
         Properties properties = new Properties();
         properties.put("mail.smtp.auth",true);

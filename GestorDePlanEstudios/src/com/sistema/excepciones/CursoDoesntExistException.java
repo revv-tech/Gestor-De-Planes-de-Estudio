@@ -1,14 +1,14 @@
 package com.sistema.excepciones;
 
 public class CursoDoesntExistException extends Exception{
-    private final String codigoCurso;
+    private final String codingCursor;
 
-    public CursoDoesntExistException(String codigoCurso) {
-        this.codigoCurso = codigoCurso;
+    public CursoDoesntExistException(String codingCursor) {
+        this.codingCursor = codingCursor;
     }
 
-    public String getCodigoCurso() {
-        return codigoCurso;
+    public String getCodingCursor() {
+        return codingCursor;
     }
 
     /**
@@ -19,6 +19,6 @@ public class CursoDoesntExistException extends Exception{
      */
     @Override
     public String getMessage() {
-        return "No existe un curso con el id " + this.codigoCurso;
+        return "No existe un curso con el id " + this.codingCursor;
     }
 }

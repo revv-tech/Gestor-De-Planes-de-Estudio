@@ -17,6 +17,7 @@ import java.util.Objects;
  * @version 1.0
  */
 public class Controlador {
+    // Atributos
     public static ArrayList<Escuela> ESCUELAS = new ArrayList<>();
     public static ArrayList<PlanDeEstudio> PLANES_DE_ESTUDIOS = new ArrayList<>();
     public static ArrayList<Curso> CURSOS = new ArrayList<>();
@@ -149,6 +150,7 @@ public class Controlador {
     public static void eliminarRequisitoCursoPlanEstudio(String idRequisito, int idPlanEstudio, String idCurso) throws CursoDoesntExistException, PlanDeEstudioDoesntExistException {
         getPlanDeEstudio(idPlanEstudio).getCurso(idCurso).eliminarRequisito(idRequisito);
     }
+
 
     public static ArrayList<Curso> getRequisitos(String codigo){
 

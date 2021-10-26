@@ -36,6 +36,8 @@ public class GeneratorPDF {
      * @param nombre Nombre del estudiante
      * @param nombreEscuela Nombre de la escuela
      * @param listaCursos Lista de los curso del plan
+     * @param bloque bloque del plan
+     * @param plan id del plan
      */
     public GeneratorPDF(String nombre, String nombreEscuela, ArrayList<Curso> listaCursos, String plan, String bloque){
 

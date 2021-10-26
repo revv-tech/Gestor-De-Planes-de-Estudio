@@ -1,14 +1,18 @@
 package com.sistema.excepciones;
 
+/**
+ * @author Sebastian Lopez
+ * @version 1.0
+ */
 public class CursoAlreadyExistsException extends Exception{
-    private final String codigoCurso; // Cambiar a string
+    private final String codingCursor;
 
     public CursoAlreadyExistsException(String pCodigoCurso) {
-        this.codigoCurso = pCodigoCurso;
+        this.codingCursor = pCodigoCurso;
     }
 
-    public String getCodigoCurso() {
-        return codigoCurso;
+    public String getCodingCursor() {
+        return codingCursor;
     }
 
     /**
@@ -19,6 +23,6 @@ public class CursoAlreadyExistsException extends Exception{
      */
     @Override
     public String getMessage() {
-        return "Ya existe un curso con el id " + this.codigoCurso;
+        return "Ya existe un curso con el id " + this.codingCursor;
     }
 }

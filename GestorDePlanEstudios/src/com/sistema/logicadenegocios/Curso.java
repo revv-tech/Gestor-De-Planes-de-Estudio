@@ -15,12 +15,12 @@ import java.util.Objects;
  */
 public class Curso {
     // Atributos
-    private String escuelaPropietaria; //El id de una escuela es un string (CI, CA,...)
+    private String escuelaPropietaria;
     private String nombreCurso;
-    private String codigo; // Un alfanumerico de 2 a +4 numeros ejemplo -> IC-5102 entonces hay que cambiarlo a String :(
-    private int creditos; // va de 0 a 4
-    private int horasLectivas; // va de 1 a 5
-    private int bloque; // bloque en el que se encuentra el curso
+    private String codigo;
+    private int creditos;
+    private int horasLectivas;
+    private int bloque;
     private final ArrayList<Curso> requisitos;
 
     public ArrayList<Curso> getRequisitos() {

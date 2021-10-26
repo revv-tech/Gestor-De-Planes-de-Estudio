@@ -70,6 +70,7 @@ public class JsonManager {
 
     /**
      * Obtiene los datos de los JSON guardados y los iguala a los atributos
+     * @throws si no existe el archivo
      */
     public void getJsons() throws IOException {
 
@@ -101,6 +102,11 @@ public class JsonManager {
 
     }
 
+    /**
+     *
+     * @return escuelas del json
+     * @throws IOException si no existe el archivo
+     */
     public ArrayList<Escuela> getJsonEscuelas() throws IOException {
         // Objecto Gson
         Gson gson = new Gson();
@@ -113,6 +119,11 @@ public class JsonManager {
         ArrayList<Escuela> escuelaArrayList = gson.fromJson(listaEscuelas,escuelaALType);
         return escuelaArrayList;
     }
+
+    /**
+     *
+     * @param escuelas lista de escuelas del json
+     */
     public void setEscuelas(ArrayList<Escuela> escuelas) {
         this.escuelas = escuelas;
     }
@@ -121,18 +132,34 @@ public class JsonManager {
         this.planes = planes;
     }
 
+    /**
+     *
+     * @param cursos lista de cursos
+     */
     public void setCursos(ArrayList<Curso> cursos) {
         this.cursos = cursos;
     }
 
+    /**
+     *
+     * @return lista de escuelas
+     */
     public ArrayList<Escuela> getEscuelas() {
         return escuelas;
     }
 
+    /**
+     *
+     * @return lista de planes
+     */
     public ArrayList<PlanDeEstudio> getPlanes() {
         return planes;
     }
 
+    /**
+     *
+     * @return lista de cursos
+     */
     public ArrayList<Curso> getCursos() {
         return cursos;
     }

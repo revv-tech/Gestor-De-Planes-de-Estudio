@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
  */
 public class Registro extends JFrame {
   // Componentes.
-  private JButton registrarEscuelaOÁreaButton;
+  private JButton registrarEscuelaOAreaButton;
   private JPanel WindowRegistrar;
   private JButton registrarPlanesDeEstudioButton;
   private JButton registrarCursosButton;
@@ -54,7 +54,7 @@ public class Registro extends JFrame {
       }
     });
 
-    registrarEscuelaOÁreaButton.addActionListener(new ActionListener() {
+    registrarEscuelaOAreaButton.addActionListener(new ActionListener() {
       /**
        * Abre un ventana para registrar una escuela o area academica.
        * @param e
