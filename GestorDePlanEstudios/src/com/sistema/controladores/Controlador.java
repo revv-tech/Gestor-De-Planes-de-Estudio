@@ -10,6 +10,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Permite controlar las funcionalidades del programa entre la vista y el modelo
+ *
+ * @autor Sebastian Lopez H
+ * @version 1.0
+ */
 public class Controlador {
     public static ArrayList<Escuela> ESCUELAS = new ArrayList<>();
     public static ArrayList<PlanDeEstudio> PLANES_DE_ESTUDIOS = new ArrayList<>();
@@ -168,6 +174,10 @@ public class Controlador {
         return null;
     }
 
+    /**
+     *  Funcion para probar datos sin utilizar json
+     * @throws CursoAlreadyExistsException
+     */
     public static void cargarArchivosPrueba() throws CursoAlreadyExistsException {
         ArrayList<Curso> cursosCI = new ArrayList<>();
         ArrayList<Curso> cursosCC = new ArrayList<>();

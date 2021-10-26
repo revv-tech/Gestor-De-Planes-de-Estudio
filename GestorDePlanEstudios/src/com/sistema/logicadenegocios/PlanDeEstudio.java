@@ -7,6 +7,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Permite almacenar la informacion de un plan de estudios.
+ *
+ * @autor Sebastian Lopez H
+ * @version 1.0
+ */
 public class PlanDeEstudio {
     // Atributos
     private String escuelaPropietaria; // hay que cambiar a String porque el codigo de la escuela puede ser CI,CA....
@@ -98,7 +104,12 @@ public class PlanDeEstudio {
             throw new CursoDoesntExistException(codigoCurso);
     }
 
-
+    /**
+     *
+     * @param codigoCurso String
+     * @return Curso
+     * @throws CursoDoesntExistException si no encuentra el curso
+     */
     public Curso getCurso(String codigoCurso) throws CursoDoesntExistException{
         for (Curso curso : this.cursos) {
             if (Objects.equals(curso.getCodigo(), codigoCurso))
@@ -107,6 +118,11 @@ public class PlanDeEstudio {
         throw new CursoDoesntExistException(codigoCurso);
     }
 
+    /**
+     *
+     * @param codigoCurso String
+     * @return boolean
+     */
     public boolean hasCurso(String codigoCurso) {
         for (Curso curso : this.cursos) {
             if (Objects.equals(curso.getCodigo(), codigoCurso))
