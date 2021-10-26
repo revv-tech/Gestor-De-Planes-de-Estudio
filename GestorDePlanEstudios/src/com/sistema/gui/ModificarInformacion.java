@@ -10,6 +10,7 @@ import com.sistema.logicadenegocios.PlanDeEstudio;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * @author Francisco Javier Ovares Rojas
@@ -33,7 +34,7 @@ public class ModificarInformacion extends JFrame{
   public ModificarInformacion() {
     setContentPane(ModificaInformacion);
     setTitle("Sistema Gestor de Planes de Estudio");
-    setSize(450,300);
+    setSize(700,400);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
     setLocationRelativeTo(null);
@@ -44,7 +45,10 @@ public class ModificarInformacion extends JFrame{
       @Override
       public void actionPerformed(ActionEvent e) {
         Curso curso = (Curso) comboBox1.getSelectedItem();
-        comboBox2.setModel(new DefaultComboBoxModel(curso.getRequisitos().toArray(new Curso[0])));
+        ArrayList<Curso> requisitos = Controlador.getRequisitos(curso.getCodigo());
+        ArrayList<Curso> corequisitos = Controlador.getCorequisitos(curso.getCodigo());
+        comboBox2.setModel(new DefaultComboBoxModel(requisitos.toArray(new Curso[0])));
+        comboBox3.setModel(new DefaultComboBoxModel(corequisitos.toArray(new Curso[0])));
 
       }
     });
@@ -53,8 +57,14 @@ public class ModificarInformacion extends JFrame{
       @Override
       public void actionPerformed(ActionEvent e) {
         PlanDeEstudio planDeEstudio = (PlanDeEstudio) comboBox4.getSelectedItem();
-        System.out.println(planDeEstudio.getCursos());
-        comboBox1.setModel(new DefaultComboBoxModel(planDeEstudio.getCursos().toArray(new Curso[0])));
+        try {
+          ArrayList<Curso> cursos = Controlador.getPlanDeEstudio(planDeEstudio.getCodigoPlanEstudios()).getCursos();
+          comboBox1.setModel(new DefaultComboBoxModel(cursos.toArray(new Curso[0])));
+
+        } catch (PlanDeEstudioDoesntExistException ex) {
+          ex.printStackTrace();
+        }
+
       }
     });
     eliminarRequisitoButton.addActionListener(new ActionListener() {
@@ -87,6 +97,7 @@ public class ModificarInformacion extends JFrame{
       public void actionPerformed(ActionEvent e) {
         PlanDeEstudio planDeEstudio = (PlanDeEstudio) comboBox4.getSelectedItem();
         Curso curso = (Curso) comboBox1.getSelectedItem();
+
         try {
           Controlador.eliminarCursoEnPlanEstudio(planDeEstudio.getCodigoPlanEstudios(),curso.getCodigo());
         } catch (PlanDeEstudioDoesntExistException ex) {
