@@ -27,8 +27,9 @@ public class PlanEstudio extends JFrame{
   private JButton regresarButton;
   private JComboBox comboBoxEscuelas;
   private JTextField textFieldCodigoPlan;
+  private JButton registrarPlanEnEscuelaButton;
 
-    /** Constructor */
+  /** Constructor */
   public PlanEstudio() {
     setContentPane(PlanEstudio);
     setTitle("Sistema Gestor de Planes de Estudio");
@@ -61,12 +62,25 @@ public class PlanEstudio extends JFrame{
         Escuela escuela = (Escuela ) comboBoxEscuelas.getSelectedItem();
         PlanDeEstudio planDeEstudio = new PlanDeEstudio(escuela.getCodigo(), Integer.parseInt(textFieldCodigoPlan.getText().toString()));
         try {
-          Controlador.agregarPlanDeEstudio(planDeEstudio);
           Curso cursoAgregar = Controlador.getCurso(textFieldCodigoCurso.getText().toString());
           Controlador.registrarCursoEmPlanEstudio(cursoAgregar, planDeEstudio.getCodigoPlanEstudios());
-        } catch (PlanDeEstudioAlreadyExistsException | CursoDoesntExistException | PlanDeEstudioDoesntExistException | CursoAlreadyExistsException ex) {
+        } catch (CursoDoesntExistException | PlanDeEstudioDoesntExistException | CursoAlreadyExistsException ex) {
           System.out.println(ex.getMessage());
         }
+      }
+    });
+
+    registrarPlanEnEscuelaButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Escuela escuela = (Escuela ) comboBoxEscuelas.getSelectedItem();
+        PlanDeEstudio planDeEstudio = new PlanDeEstudio(escuela.getCodigo(), Integer.parseInt(textFieldCodigoPlan.getText().toString()));
+        try {
+          Controlador.agregarPlanDeEstudio(planDeEstudio);
+        } catch (PlanDeEstudioAlreadyExistsException ex) {
+          ex.printStackTrace();
+        }
+
       }
     });
   }
